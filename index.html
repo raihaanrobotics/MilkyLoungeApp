@@ -33,8 +33,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* Fully centralizes children within the wrapper */
-      gap: 20px; /* Grouped cohesively together with a balanced gap */
+      justify-content: center;
+      gap: 15px; /* Clean, compact grouping space between components */
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
@@ -43,13 +43,13 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-bottom: 0px; 
+      margin-bottom: 5px; 
       position: relative;
       z-index: 2; 
     }
 
     .logo-img {
-      width: 350px; 
+      width: 310px; /* Refined slightly for a tighter, more centered desktop/mobile cluster profile */
       height: auto;
       filter: drop-shadow(0 8px 20px rgba(170, 119, 28, 0.08));
     }
@@ -59,8 +59,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 18px; 
-      margin-top: 0px; /* Reset negative margin to keep elements beautifully unified in the center */
+      gap: 16px; 
       position: relative;
       z-index: 3;
     }
@@ -136,8 +135,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 0px; /* Normalized to prevent layout shifting downward */
-      align-self: flex-start; /* Lifts the converter section to sit comfortably high on the screen */
+      margin-top: -120px; /* Noticeably lifted the conversion stack way up high on the display layout screen */
     }
 
     /* Staggered Content Architecture Entry Trigger */
@@ -184,11 +182,11 @@
       -webkit-backdrop-filter: blur(16px);
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.08);
-      padding: 64px 24px; 
+      padding: 44px 24px; /* Reduced vertical bloating for a cleaner upper frame orientation */
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px; 
+      gap: 24px; /* Balanced interior element padding density */
       z-index: 1;
       overflow: visible; 
       border: 2px solid transparent; 
@@ -474,8 +472,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 0px; 
-      align-self: flex-start; /* Lifts the recipe hub comfortably high on the screen */
+      margin-top: -65px; 
     }
 
     .recipe-card {
