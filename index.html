@@ -105,6 +105,17 @@
       
       animation: borderShimmer 4s linear infinite;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+      /* REMOVES MOBILE TAPPING OVERLAY BOX, FOCUS OUTLINE, AND TEXT SELECTION HIGHLIGHTS */
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .shimmer-glass-btn:focus,
+    .shimmer-glass-btn:focus-visible,
+    .shimmer-glass-btn:active {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     @keyframes borderShimmer {
