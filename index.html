@@ -6,6 +6,11 @@
   <title>The Milky Lounge - Premium Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ANTI-DARK MODE ENGINE IMMUNITY */
+    :root {
+      color-scheme: light;
+    }
+
     /* 1. SEAMLESS MOBILE COMPOSITION */
     * {
       box-sizing: border-box;
@@ -25,6 +30,7 @@
       background: linear-gradient(135deg, #fdfbf7 0%, #ffffff 50%, #f5efe4 100%);
       overflow: hidden;
       padding: 16px 12px; /* Uniform safe buffer from all screen edges */
+      color-scheme: light;
     }
 
     /* 2. THE MOBILE GRID MATRIX */
@@ -472,7 +478,7 @@
       position: relative; 
       width: 100%;
       max-width: 380px;
-      height: 82dvh; /* Made the container vertical size slightly smaller for cleaner mobile tracking */
+      height: 90dvh; /* Made the container vertical size slightly smaller for cleaner mobile tracking */
       display: flex;
       flex-direction: column;
       align-items: center;
