@@ -106,16 +106,18 @@
       animation: borderShimmer 4s linear infinite;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-      /* REMOVES MOBILE TAPPING OVERLAY BOX, FOCUS OUTLINE, AND TEXT SELECTION HIGHLIGHTS */
+      /* CLEANUP RECTANGLE FIXES */
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
 
-    .shimmer-glass-btn:focus,
+    /* Prevent focus overlay rendering outlines on active trigger points */
+    .shimmer-glass-btn:focus, 
     .shimmer-glass-btn:focus-visible,
-    .shimmer-glass-btn:active {
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
+    .category-capsule:focus,
+    .category-capsule:focus-visible,
+    .back-menu-btn:focus {
+      outline: none !important;
     }
 
     @keyframes borderShimmer {
@@ -321,6 +323,7 @@
       justify-content: space-between;
       transition: all 0.3s ease;
       position: relative;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .custom-select-trigger:after {
@@ -381,6 +384,7 @@
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .custom-option:hover {
@@ -450,6 +454,9 @@
       gap: 6px;
       transition: color 0.3s ease;
       flex-shrink: 0;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     .back-menu-btn:hover {
@@ -549,6 +556,9 @@
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.25s ease;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     .category-capsule.active {
@@ -599,6 +609,7 @@
       cursor: pointer;
       user-select: none;
       gap: 12px;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .recipe-title-container {
