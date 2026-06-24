@@ -431,6 +431,7 @@
       align-items: center;
       gap: 6px;
       transition: color 0.3s ease;
+      flex-shrink: 0;
     }
 
     .back-menu-btn:hover {
@@ -467,26 +468,35 @@
        ADDED STATE: ELITE 3-INGREDIENT RECIPE HUB
        ========================================== */
     .recipe-screen-wrapper {
-      width: 100%;
-      max-width: 380px; /* Aligned horizontal boundaries with converter frame updates */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      margin-top: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: -65px; 
+      justify-content: center;
+      padding: 24px 12px;
+      z-index: 10;
     }
 
     .recipe-card {
       position: relative;
       width: 100%;
+      max-width: 380px;
+      height: calc(100% - 60px);
       background: #ffffff;
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.12);
-      padding: 40px 24px 35px 24px; 
+      padding: 30px 24px 20px 24px; 
       display: flex;
       flex-direction: column;
       align-items: center;
       z-index: 1;
-      overflow: visible;
+      overflow: hidden;
       border: 2px solid #AA771C;
     }
 
@@ -506,6 +516,7 @@
       padding: 4px 0 16px 0;
       margin-top: 15px;
       scrollbar-width: none; 
+      flex-shrink: 0;
     }
 
     .category-bar::-webkit-scrollbar {
@@ -536,7 +547,7 @@
 
     .recipe-items-container {
       width: 100%;
-      max-height: 520px; 
+      flex: 1;
       overflow-y: auto;
       margin-top: 10px;
       padding-right: 4px;
@@ -561,11 +572,8 @@
       border-radius: 30px;
       overflow: hidden;
       border: 2px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(to right, #fdfbf7, #fdfbf7), 
-                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
-      background-size: 100%, 300% 100%;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
       animation: borderShimmer 4s linear infinite;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
@@ -592,7 +600,7 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: rgba(170, 119, 28, 0.15);
+      background: rgba(255, 255, 255, 0.6);
       border: 1px solid #AA771C;
       flex-shrink: 0;
       object-fit: cover;
@@ -622,7 +630,7 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      background: rgba(0, 167, 157, 0.02);
+      background: rgba(255, 255, 255, 0.85);
     }
 
     .recipe-drawer-content {
@@ -659,8 +667,8 @@
     }
 
     .recipe-row-card.expanded {
-      border-color: #00A79D;
-      background-image: linear-gradient(to right, #ffffff, #ffffff), linear-gradient(to right, #00A79D, #00A79D);
+      background: #ffffff;
+      border: 2px solid #00A79D;
       box-shadow: 0 6px 18px rgba(0, 167, 157, 0.08);
       animation: none;
     }
