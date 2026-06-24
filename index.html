@@ -19,21 +19,21 @@
       width: 100vw;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; 
+      justify-content: center; /* Centered layout contents vertically for landing state stabilization */
       align-items: center;    
       background: linear-gradient(135deg, #fdfbf7 0%, #ffffff 50%, #f5efe4 100%);
       overflow: hidden;
-      padding: 12vh 24px 24px 24px; /* Slightly adjusted top padding to balance out the tight text stack */
+      padding: 24px 12px; /* Decreased horizontal spacing to move container edges closer to screen edges */
     }
 
     /* 2. THE MOBILE GRID MATRIX */
     .mobile-menu-wrapper {
       width: 100%;
-      max-width: 360px; 
+      max-width: 380px; /* Expanded slightly to occupy more horizontal space safely */
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0px; /* Reduced to zero to remove any default vertical spacing completely */
+      gap: 0px; 
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
@@ -44,7 +44,7 @@
       justify-content: center;
       margin-bottom: 0px; 
       position: relative;
-      z-index: 2; /* Ensures image stays clean above backgrounds */
+      z-index: 2; 
     }
 
     .logo-img {
@@ -59,7 +59,7 @@
       display: flex;
       flex-direction: column;
       gap: 18px; 
-      margin-top: -20px; /* Negative margin pulls the button stack significantly higher up under the logo graphics */
+      margin-top: -20px; 
       position: relative;
       z-index: 3;
     }
@@ -82,7 +82,7 @@
       border-radius: 50px;
       cursor: pointer;
       outline: none;
-      overflow: visible; /* Fixed to allow the milk drop splash elements to escape the container boundaries */
+      overflow: visible; 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -131,10 +131,11 @@
 
     .converter-screen-wrapper {
       width: 100%;
-      max-width: 360px;
+      max-width: 380px; /* Expanded structural boundaries to reduce blank margins */
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: -50px; /* Shifts the conversion container noticeably higher up the display frame */
     }
 
     /* Staggered Content Architecture Entry Trigger */
@@ -172,7 +173,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Premium Lounge Inner Card Frame - Made Longer Vertically */
+    /* Premium Lounge Inner Card Frame */
     .converter-card {
       position: relative;
       width: 100%;
@@ -181,17 +182,17 @@
       -webkit-backdrop-filter: blur(16px);
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.08);
-      padding: 64px 24px; /* Increased vertical depth padding as requested */
+      padding: 64px 24px; 
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px; /* Enhanced clear breathing space */
+      gap: 32px; 
       z-index: 1;
-      overflow: visible; /* Modified to visible to allow custom dropdown selection options to flow naturally over borders */
-      border: 2px solid transparent; /* Creates 2px slot placeholder for the background shimmer to illuminate through */
+      overflow: visible; 
+      border: 2px solid transparent; 
     }
 
-    /* Dynamic Border Engine - Animates beautifully across all mobile processors */
+    /* Dynamic Border Engine */
     .converter-card::before {
       content: "";
       position: absolute;
@@ -206,7 +207,7 @@
       animation: cardBorderShimmer 4s linear infinite;
     }
 
-    /* Inner layer blocks the gradient from spilling inside, preserving the clean background container color */
+    /* Inner layer blocks the gradient from spilling inside */
     .converter-card::after {
       content: "";
       position: absolute;
@@ -246,7 +247,6 @@
       transition: z-index 0s linear;
     }
 
-    /* Elevates the active selection window layer safely over the teal module layout components */
     .input-row.dropdown-active {
       z-index: 10;
     }
@@ -338,9 +338,9 @@
       border: 1px solid rgba(212, 175, 55, 0.35);
       border-radius: 18px;
       box-shadow: 0 10px 30px rgba(170, 119, 28, 0.12);
-      max-height: 280px; /* Modified to allow the window selection list to open larger vertically with clear visibility */
+      max-height: 280px; 
       overflow-y: auto;
-      z-index: 999; /* Absolute top indexing priority assignment */
+      z-index: 999; 
       opacity: 0;
       visibility: hidden;
       transform: translateY(-8px);
@@ -376,7 +376,6 @@
       font-weight: 600;
     }
 
-    /* Custom elegant thin scrollbar for selection box window */
     .custom-options-container::-webkit-scrollbar {
       width: 5px;
     }
@@ -398,7 +397,7 @@
       box-shadow: 0 6px 20px rgba(0, 167, 157, 0.25);
       margin-top: 5px;
       position: relative;
-      z-index: 1; /* Drop layer weight index priority adjusted lower to stay clean under custom panels */
+      z-index: 1; 
     }
 
     .result-label {
@@ -446,12 +445,10 @@
       width: 8px;
       height: 14px;
       background: #ffffff;
-      /* Drops form realistic liquid curves through structural border layouts */
       border-radius: 0 50% 50% 50%;
       pointer-events: none;
       z-index: 9999;
       box-shadow: inset -1px -1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(255, 255, 255, 0.9);
-      /* Rotation points the tip down, matching individual radial spray lines dynamically */
       animation: milkSpurt 0.55s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
     }
 
@@ -471,21 +468,20 @@
        ========================================== */
     .recipe-screen-wrapper {
       width: 100%;
-      max-width: 360px;
+      max-width: 380px; /* Aligned horizontal boundaries with converter frame updates */
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: -65px; /* Pulls the entire setup noticeably higher up to bring the back button into full view */
+      margin-top: -65px; 
     }
 
-    /* White container layout with solid gold borders - Made Bigger and Vertically Longer */
     .recipe-card {
       position: relative;
       width: 100%;
       background: #ffffff;
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.12);
-      padding: 40px 24px 35px 24px; /* Slightly optimized vertical padding to guarantee single-screen execution */
+      padding: 40px 24px 35px 24px; 
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -494,7 +490,6 @@
       border: 2px solid #AA771C;
     }
 
-    /* Strip background engine features for clean white layout profiling */
     .recipe-card::before {
       display: none;
     }
@@ -503,7 +498,6 @@
       display: none;
     }
 
-    /* Sliding Capsule Horizontal Category Bar */
     .category-bar {
       width: 100%;
       display: flex;
@@ -511,11 +505,11 @@
       overflow-x: auto;
       padding: 4px 0 16px 0;
       margin-top: 15px;
-      scrollbar-width: none; /* Hide scrollbar for Firefox */
+      scrollbar-width: none; 
     }
 
     .category-bar::-webkit-scrollbar {
-      display: none; /* Hide scrollbar for Chrome/Safari */
+      display: none; 
     }
 
     .category-capsule {
@@ -540,10 +534,9 @@
       box-shadow: 0 4px 12px rgba(0, 167, 157, 0.2);
     }
 
-    /* Scrollable Recipe Items Grid Wrapper - Expanded Vertically */
     .recipe-items-container {
       width: 100%;
-      max-height: 520px; /* Increased from 380px to make recipe hub container vertically longer */
+      max-height: 520px; 
       overflow-y: auto;
       margin-top: 10px;
       padding-right: 4px;
@@ -563,7 +556,6 @@
       border-radius: 10px;
     }
 
-    /* Expandable Accordion Card Rows - Gold Shimmering Pill Default State */
     .recipe-row-card {
       width: 100%;
       border-radius: 30px;
@@ -589,7 +581,6 @@
       gap: 12px;
     }
 
-    /* Header text container for flex balance */
     .recipe-title-container {
       display: flex;
       align-items: center;
@@ -597,7 +588,6 @@
       flex: 1;
     }
 
-    /* Circle thumbnail graphic node next to text headings */
     .recipe-heading-thumb {
       width: 32px;
       height: 32px;
@@ -628,7 +618,6 @@
       flex-shrink: 0;
     }
 
-    /* Dynamic Accordion Body Drawer Panel */
     .recipe-body-drawer {
       max-height: 0;
       overflow: hidden;
@@ -637,7 +626,7 @@
     }
 
     .recipe-drawer-content {
-      padding: 0 20px 24px 20px; /* Enhanced bottom padding to prevent cutoff at base layout */
+      padding: 0 20px 24px 20px; 
       border-top: 1px dashed rgba(0, 167, 157, 0.15);
     }
 
@@ -669,7 +658,6 @@
       line-height: 1.45;
     }
 
-    /* Active Accordion Row Classes - White Background with Teal Identity Lines */
     .recipe-row-card.expanded {
       border-color: #00A79D;
       background-image: linear-gradient(to right, #ffffff, #ffffff), linear-gradient(to right, #00A79D, #00A79D);
@@ -691,7 +679,6 @@
       border-color: #00A79D;
     }
 
-    /* Animated entry setups for recipe system template triggers */
     .recipe-screen-wrapper.animate-build .recipe-card {
       animation: cardBuildUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
@@ -799,7 +786,6 @@
   </div>
 
   <script>
-    // Comprehensive High-Precision Mind-Blowing Recipe Data Structure
     const recipeDatabase = {
       sweet: [
         { title: "The Melted Ice Cream Bread", image: "icecream_bread.png", ingredients: ["2 Cups Premium Ice Cream (any flavor, melted)", "1.5 Cups Self-Raising Flour", "2 tbsp Sugar"], magic: "Because ice cream is an exact, high-end emulsion of cream and sugar, mixing it with flour and baking at 180°C for 35 minutes yields a moist gourmet dessert loaf." },
@@ -814,7 +800,7 @@
       ],
       morning: [
         { title: "Mind-Blowing Banana Hotcakes", image: "banana_hotcakes.png", ingredients: ["1 Large Ripe Banana", "2 Eggs", "2 tbsp Self-Raising Flour"], magic: "Mash the banana completely smooth, whisk in the eggs and flour, then fry in a buttered pan for fluffy, naturally sweet hotcakes with zero added sugar." },
-        { title: "The Luxury French Toast", image: "french_toast.png", ingredients: ["Sliced Bread", "1" + " Egg", "1/4 Cup Vanilla Ice Cream (melted)"], magic: "Whisk the egg directly into the melted vanilla ice cream to create an elite dipping custard. The custard base infuses deep vanilla bean profiles into the bread." },
+        { title: "The Luxury French Toast", image: "french_toast.png", ingredients: ["Sliced Bread", "1 Egg", "1/4 Cup Vanilla Ice Cream (melted)"], magic: "Whisk the egg directly into the melted vanilla ice cream to create an elite dipping custard. The custard base infuses deep vanilla bean profiles into the bread." },
         { title: "Frothy Whipped Coffee Frappé", image: "whipped_coffee.png", ingredients: ["2 tbsp Instant Coffee Powder", "2 tbsp Sugar", "Ice-Cold Milk (with ice cubes)"], magic: "Whisk coffee, sugar, and 2 tbsp boiling water aggressively for 2 minutes until it builds a golden caramel foam. Dollop over a glass of ice milk." }
       ],
       snacks: [
@@ -827,7 +813,6 @@
     function handleMenuClick(event, action) {
       createMilkSplash(event);
       
-      // Short delay for visual splash physics calculation to manifest cleanly
       setTimeout(() => {
         if (action === 'recipeAlert') {
           toggleScreen('recipeScreen', true);
@@ -846,11 +831,8 @@
         const drop = document.createElement('div');
         drop.classList.add('milk-drop');
         
-        // Generates clean radial spray logic
         const angle = Math.random() * Math.PI * 2;
         const distance = 45 + Math.random() * 85;
-        
-        // Convert the radial spray angle to degrees and match the teardrop point geometry setup
         const rotDegrees = (angle * 180 / Math.PI) - 90; 
         
         drop.style.setProperty('--mdist', distance + "px");
@@ -871,7 +853,6 @@
       const converter = document.getElementById('converterScreen');
       const recipeHub = document.getElementById('recipeScreen');
       
-      // Clear all screens out initially
       landing.classList.add('hidden');
       converter.classList.add('hidden');
       recipeHub.classList.add('hidden');
@@ -885,24 +866,21 @@
         if (screenId === 'converterScreen') {
           calculateConversion();
         } else if (screenId === 'recipeScreen') {
-          filterRecipes('sweet'); // Auto-load default category pool
+          filterRecipes('sweet'); 
         }
       } else {
-        // Safe closure reset configurations for premium drop overlay element profiles
         document.getElementById('customSelectWrapper').classList.remove('open');
         document.getElementById('selectRowWrapper').classList.remove('dropdown-active');
         landing.classList.remove('hidden');
       }
     }
 
-    /* Custom Selection UI Engine Controls */
     function toggleCustomDropdown() {
       const wrapper = document.getElementById('customSelectWrapper');
       const rowWrapper = document.getElementById('selectRowWrapper');
       
       wrapper.classList.toggle('open');
       
-      // Alternates layer structural priorities safely based on state active configurations
       if (wrapper.classList.contains('open')) {
         rowWrapper.classList.add('dropdown-active');
       } else {
@@ -928,9 +906,7 @@
       calculateConversion();
     }
 
-    /* Recipe Hub Engine Filtering and Rendering Logic */
     function filterRecipes(categoryKey) {
-      // Update Capsule Selection Visual States
       const capsules = document.querySelectorAll('.category-capsule');
       capsules.forEach(cap => {
         if (cap.innerText.toLowerCase().includes(categoryKey.substring(0,4))) {
@@ -943,9 +919,8 @@
       });
 
       const container = document.getElementById('recipeContainerNode');
-      container.innerHTML = ""; // Flush old records cleanly
+      container.innerHTML = ""; 
 
-      // Build out lists dynamically
       recipeDatabase[categoryKey].forEach((recipe) => {
         const card = document.createElement('div');
         card.classList.add('recipe-row-card');
@@ -981,7 +956,6 @@
       const drawer = cardWrapper.querySelector('.recipe-body-drawer');
       const container = document.getElementById('recipeContainerNode');
       
-      // Close other open panels within container for accordion effect profiles
       container.querySelectorAll('.recipe-row-card').forEach(item => {
         if (item !== cardWrapper && item.classList.contains('expanded')) {
           item.classList.remove('expanded');
@@ -998,7 +972,6 @@
       }
     }
 
-    // Global Event Listener closes open context windows on stray outer clicks cleanly
     document.addEventListener('click', function(e) {
       const selectWrapper = document.getElementById('customSelectWrapper');
       const rowWrapper = document.getElementById('selectRowWrapper');
@@ -1021,7 +994,6 @@
       let result = 0;
       let unit = "";
 
-      // Comprehensive High Precision Culinary Conversion Mathematical Architecture Suite
       switch(type) {
         case "cupsToMl":
           result = val * 240;
@@ -1105,13 +1077,10 @@
           break;
       }
 
-      // Format clean floats up to 2 decimal points if needed
       output.innerText = Number.isInteger(result) ? `${result} ${unit}` : `${result.toFixed(2)} ${unit}`;
     }
 
-    // GURANTEED USER INTERACTION LISTENER OVERLAY BOUND WORLDWIDE
     window.addEventListener('click', function(e) {
-      // Prevents re-triggering if intercepted directly inside handleMenuClick loops
       if(!e.target.closest('.shimmer-glass-btn')) {
         createMilkSplash(e);
       }
