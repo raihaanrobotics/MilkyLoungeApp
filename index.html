@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>The Milky Lounge - Premium Menu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=500;600;700&display=swap" rel="stylesheet">
   <style>
     /* 1. SEAMLESS MOBILE COMPOSITION */
     * {
@@ -16,6 +16,7 @@
       padding: 0;
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
+      min-height: 100dvh; /* Accurate mobile viewport sizing considering browser toolbars */
       width: 100vw;
       display: flex;
       flex-direction: column;
@@ -23,7 +24,7 @@
       align-items: center;    
       background: linear-gradient(135deg, #fdfbf7 0%, #ffffff 50%, #f5efe4 100%);
       overflow: hidden;
-      padding: 24px 12px; /* Decreased horizontal spacing to move container edges closer to screen edges */
+      padding: 16px 12px; /* Uniform safe buffer from all screen edges */
     }
 
     /* 2. THE MOBILE GRID MATRIX */
@@ -338,7 +339,7 @@
       border: 1px solid rgba(212, 175, 55, 0.35);
       border-radius: 18px;
       box-shadow: 0 10px 30px rgba(170, 119, 28, 0.12);
-      max-height: 280px; 
+      max-height: 200px; /* Reduced to guarantee it stays cleanly within bounds on short browser ports */
       overflow-y: auto;
       z-index: 999; 
       opacity: 0;
@@ -418,7 +419,7 @@
 
     /* Rounded Back Button Utility */
     .back-menu-btn {
-      margin-top: 25px;
+      margin-top: 16px; /* Tightened up spacing slightly to preserve vertical space */
       background: transparent;
       border: none;
       color: #AA771C;
@@ -468,36 +469,31 @@
        ADDED STATE: ELITE 3-INGREDIENT RECIPE HUB
        ========================================== */
     .recipe-screen-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      max-width: none;
-      margin-top: 0;
+      position: relative; 
+      width: 100%;
+      max-width: 380px;
+      height: 82dvh; /* Made the container vertical size slightly smaller for cleaner mobile tracking */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 24px 12px;
+      justify-content: space-between; 
       z-index: 10;
     }
 
     .recipe-card {
       position: relative;
       width: 100%;
-      max-width: 380px;
-      height: calc(100% - 60px);
+      flex: 1; 
       background: #ffffff;
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.12);
-      padding: 30px 24px 20px 24px; 
+      padding: 24px 20px 20px 20px; 
       display: flex;
       flex-direction: column;
       align-items: center;
       z-index: 1;
-      overflow: hidden;
-      border: 2px solid #AA771C;
+      overflow-y: auto; /* Enabled full master scrolling directly inside the parent container card layout */
+      border: 1px solid #AA771C; /* Made the structural container borders thinner */
     }
 
     .recipe-card::before {
@@ -513,8 +509,8 @@
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 4px 0 16px 0;
-      margin-top: 15px;
+      padding: 4px 0 14px 0;
+      margin-top: 10px;
       scrollbar-width: none; 
       flex-shrink: 0;
     }
@@ -547,22 +543,21 @@
 
     .recipe-items-container {
       width: 100%;
-      flex: 1;
-      overflow-y: auto;
-      margin-top: 10px;
+      margin-top: 4px;
       padding-right: 4px;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      flex-shrink: 0; /* Allows standard overflow mapping up into the parent card frame safely */
     }
 
-    .recipe-items-container::-webkit-scrollbar {
+    .recipe-card::-webkit-scrollbar {
       width: 4px;
     }
-    .recipe-items-container::-webkit-scrollbar-track {
+    .recipe-card::-webkit-scrollbar-track {
       background: transparent;
     }
-    .recipe-items-container::-webkit-scrollbar-thumb {
+    .recipe-card::-webkit-scrollbar-thumb {
       background: rgba(170, 119, 28, 0.25);
       border-radius: 10px;
     }
@@ -975,6 +970,16 @@
 
       if (cardWrapper.classList.contains('expanded')) {
         drawer.style.maxHeight = drawer.scrollHeight + "px";
+        
+        // Auto-scroll parent layout frame down to reveal expanding rows safely
+        setTimeout(() => {
+          const cardParent = document.querySelector('.recipe-card');
+          const distanceToTop = cardWrapper.offsetTop - 70;
+          cardParent.scrollTo({
+            top: distanceToTop,
+            behavior: 'smooth'
+          });
+        }, 310);
       } else {
         drawer.style.maxHeight = "0px";
       }
