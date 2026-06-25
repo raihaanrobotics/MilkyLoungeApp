@@ -154,7 +154,7 @@
       position: relative;
       width: 100%;
       max-width: 380px; /* Expanded structural boundaries to reduce blank margins */
-      height: 92dvh; /* Locked to same vertical scale profile as the recipe page */
+      height: 96dvh; /* Increased container size vertically for maximum safe visual expansion */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -594,7 +594,7 @@
       position: relative; 
       width: 100%;
       max-width: 380px;
-      height: 90dvh; /* Made the container vertical size slightly smaller for cleaner mobile tracking */
+      height: 94dvh; /* Increased container size vertically for cleaner, longer mobile tracking */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1012,6 +1012,30 @@
       transition: all 0.2s ease;
     }
 
+    /* SHIMMERING GOLD LAUNCH BUTTON COMPOSITION */
+    .timer-pill-btn.launch-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #7A5312;
+      border: 2px solid transparent;
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      background-image: linear-gradient(to right, #ffffff, #ffffff), 
+                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 100%, 300% 100%;
+      animation: borderShimmer 4s linear infinite;
+      box-shadow: 0 4px 15px rgba(170, 119, 28, 0.15);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .timer-pill-btn.launch-btn:hover {
+      background-image: linear-gradient(to right, #AA771C, #AA771C), 
+                        linear-gradient(90deg, #AA771C, #FFF3B0, #AA771C);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(170, 119, 28, 0.35);
+      animation: none;
+    }
+
     .timer-pill-btn.delete-btn {
       background: transparent;
       color: #AA771C;
@@ -1069,7 +1093,7 @@
     .hamburger-flyout-overlay {
       position: absolute;
       inset: 0;
-      background: #ffffff;
+      background: #fdfbf7; /* Updated signature cream background color profile */
       z-index: 90;
       display: flex;
       flex-direction: column;
@@ -1099,7 +1123,7 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       color: #00A79D;
-      background: #fdfbf7;
+      background: #ffffff; /* Contrast optimization inside the cream canvas overlay */
       border: 1px solid rgba(0, 167, 157, 0.3);
       border-radius: 30px;
       cursor: pointer;
@@ -1380,7 +1404,7 @@
             <input type="number" id="timerSec" class="glass-input-field pure-white-field" value="0" min="0" max="59">
           </div>
         </div>
-        <button class="timer-pill-btn" style="margin-top: 8px; padding: 10px; width: 100%; letter-spacing: 1px;" onclick="createNewTimer()">
+        <button class="timer-pill-btn launch-btn" style="margin-top: 8px; padding: 10px; width: 100%; letter-spacing: 1px;" onclick="createNewTimer()">
           + Launch New Countdown
         </button>
       </div>
@@ -1405,7 +1429,7 @@
       ],
       savory: [
         { title: "The Infamous 3-Ingredient Mac", image: "mac_cheese.png", ingredients: ["2 Cups Milk", "1 Cup Macaroni Pasta", "1 Cup Grated Mature Cheddar Cheese"], magic: "Simmer macaroni directly in the milk over medium-low heat, stirring constantly. The pasta releases its natural starches to build a velvet sauce. Stir in cheese." },
-        { title: "Gourmet Crispy Pizza Pockets", image: "pizza_pockets.png", ingredients: ["Sliced White Bread", "Tomato Pizza Paste/Sauce", "Grated Mozzarella Cheese"], magic: "Roll bread flat with a bottle, add sauce and mozzarella, fold over, crimp edges tight with a fork, and pan-fry in butter until crisp." },
+        { title: "Gourmet Crispy Pizza Pockets", image: "pizza_ pockets.png", ingredients: ["Sliced White Bread", "Tomato Pizza Paste/Sauce", "Grated Mozzarella Cheese"], magic: "Roll bread flat with a bottle, add sauce and mozzarella, fold over, crimp edges tight with a fork, and pan-fry in butter until crisp." },
         { title: "Creamy Rosé Tomato Pasta", image: "rose_pasta.png", ingredients: ["200g Pasta", "1/2 Jar Tomato Pasta Sauce", "3 tbsp Cream Cheese"], magic: "Boil pasta. In a separate pan, melt cream cheese straight into the hot tomato sauce to transform ordinary red sauce into an Italian rosé instantly." }
       ],
       morning: [
