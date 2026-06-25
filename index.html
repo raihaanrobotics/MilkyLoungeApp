@@ -1014,15 +1014,11 @@
 
     /* SHIMMERING GOLD LAUNCH BUTTON COMPOSITION */
     .timer-pill-btn.launch-btn {
-      background: rgba(255, 255, 255, 0.1);
       color: #7A5312;
       border: 2px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(to right, #ffffff, #ffffff), 
-                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
-      background-size: 100%, 300% 100%;
-      animation: borderShimmer 4s linear infinite;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
+      animation: cardBorderShimmer 4s linear infinite;
       box-shadow: 0 4px 15px rgba(170, 119, 28, 0.15);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
