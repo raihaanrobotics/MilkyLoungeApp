@@ -50,7 +50,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-bottom: 50px; 
+      margin-bottom: 40px; 
       position: relative;
       z-index: 2; 
     }
@@ -150,12 +150,15 @@
     }
 
     .converter-screen-wrapper {
+      position: relative;
       width: 100%;
       max-width: 380px; /* Expanded structural boundaries to reduce blank margins */
+      height: 92dvh; /* Locked to same vertical scale profile as the recipe page */
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: -120px; /* Noticeably lifted the conversion stack way up high on the display layout screen */
+      justify-content: space-between;
+      z-index: 10;
     }
 
     /* Staggered Content Architecture Entry Trigger */
@@ -168,19 +171,14 @@
       animation: elementBuildUp 0.4s ease-out 0.15s forwards;
     }
 
-    .converter-screen-wrapper.animate-build .input-row:nth-of-type(1) {
+    .converter-screen-wrapper.animate-build .heading-divider {
       opacity: 0;
-      animation: elementBuildUp 0.4s ease-out 0.28s forwards;
+      animation: elementBuildUp 0.4s ease-out 0.18s forwards;
     }
 
-    .converter-screen-wrapper.animate-build .input-row:nth-of-type(2) {
+    .converter-screen-wrapper.animate-build .converter-section {
       opacity: 0;
-      animation: elementBuildUp 0.4s ease-out 0.38s forwards;
-    }
-
-    .converter-screen-wrapper.animate-build .result-display-container {
-      opacity: 0;
-      animation: elementBuildUp 0.4s ease-out 0.48s forwards;
+      animation: elementBuildUp 0.4s ease-out 0.25s forwards;
     }
 
     @keyframes cardBuildUp {
@@ -197,16 +195,17 @@
     .converter-card {
       position: relative;
       width: 100%;
+      flex: 1;
       background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.08);
-      padding: 44px 24px; /* Reduced vertical bloating for a cleaner upper frame orientation */
+      padding: 16px 16px; /* Optimized tight density to map both modules inside zero-scroll boundary */
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px; /* Balanced interior element padding density */
+      gap: 12px; /* Tightened gap profile to fit density matrix seamlessly */
       z-index: 1;
       overflow: visible; 
       border: 2px solid transparent; 
@@ -240,20 +239,68 @@
       pointer-events: none;
     }
 
+    /* PURE WHITE HEADER PROFILE BACKGROUND ENGINE FOR SCALER AND CONVERTER */
+    #scalerScreen .converter-card::after,
+    #converterScreen .converter-card::after {
+      background: linear-gradient(to bottom, #ffffff 0px, #ffffff 52px, rgba(255, 255, 255, 0.5) 52px, rgba(255, 255, 255, 0.5) 100%);
+    }
+
     @keyframes cardBorderShimmer {
       0% { background-position: 0% 0%; }
       100% { background-position: 300% 0%; }
     }
 
     .converter-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #7A5312;
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin: 0 0 5px 0;
+      margin: 0;
       position: relative;
       z-index: 2;
+      flex-shrink: 0;
+    }
+
+    /* Custom Normal Line Breaker Under Headings */
+    .heading-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(170, 119, 28, 0.3);
+      margin: 4px 0;
+      border: none;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Dual Independent Section Structural Containers */
+    .converter-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      padding: 8px 0;
+    }
+
+    /* Push the content inside the shimmering area further down from the white header block */
+    #scalerScreen .converter-section:first-of-type,
+    #converterScreen .converter-section:first-of-type {
+      margin-top: 18px;
+    }
+
+    .converter-section:first-of-type {
+      border-bottom: 1px dashed rgba(170, 119, 28, 0.2);
+    }
+
+    .section-title-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #7A5312;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
     }
 
     /* Clean Input Grid Configurations */
@@ -261,18 +308,27 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 4px;
       position: relative;
       z-index: 2;
       transition: z-index 0s linear;
+      flex-shrink: 0;
     }
 
     .input-row.dropdown-active {
-      z-index: 10;
+      z-index: 20 !important; /* Forces dropdown over elements below */
+    }
+
+    #standardSectionWrapper {
+      z-index: 5; /* Layering context to keep top section drop options elevated */
+    }
+
+    #densitySectionWrapper {
+      z-index: 2;
     }
 
     .input-label {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 600;
       color: #AA771C;
       letter-spacing: 0.8px;
@@ -280,25 +336,37 @@
       padding-left: 5px;
     }
 
-    /* Matching Shimmering Gold Inputs */
+    .input-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+
+    /* Matching Gold Inputs */
     .glass-input-field {
       width: 100%;
-      padding: 15px 18px;
-      font-size: 0.95rem;
+      padding: 9px 14px;
+      font-size: 0.85rem;
       font-weight: 500;
       font-family: 'Poppins', sans-serif;
       color: #4A320A;
       background: rgba(255, 255, 255, 0.6);
       border: 1px solid rgba(212, 175, 55, 0.4);
-      border-radius: 18px;
+      border-radius: 12px;
       outline: none;
       transition: all 0.3s ease;
+      box-shadow: 0 0 6px rgba(170, 119, 28, 0.08);
+    }
+
+    /* Overriding input text blocks and custom triggers to be pure white */
+    .pure-white-field {
+      background: #ffffff !important;
     }
 
     .glass-input-field:focus {
       border-color: #00A79D;
       background: #ffffff;
-      box-shadow: 0 0 10px rgba(0, 167, 157, 0.15);
     }
 
     /* Custom Aesthetically Matching Glass Dropdown Architecture */
@@ -309,14 +377,14 @@
 
     .custom-select-trigger {
       width: 100%;
-      padding: 15px 40px 15px 18px;
-      font-size: 0.90rem;
+      padding: 9px 40px 9px 14px;
+      font-size: 0.80rem;
       font-weight: 500;
       font-family: 'Poppins', sans-serif;
       color: #4A320A;
       background: rgba(255, 255, 255, 0.6);
       border: 1px solid rgba(212, 175, 55, 0.4);
-      border-radius: 18px;
+      border-radius: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -329,7 +397,7 @@
     .custom-select-trigger:after {
       content: "";
       position: absolute;
-      right: 18px;
+      right: 14px;
       top: 50%;
       transform: translateY(-3px);
       border-left: 5px solid transparent;
@@ -340,8 +408,7 @@
 
     .custom-select-wrapper.open .custom-select-trigger {
       border-color: #00A79D;
-      background: #ffffff;
-      box-shadow: 0 0 10px rgba(0, 167, 157, 0.15);
+      background: #ffffff !important;
     }
 
     .custom-select-wrapper.open .custom-select-trigger:after {
@@ -350,23 +417,23 @@
 
     .custom-options-container {
       position: absolute;
-      top: calc(100% + 6px);
+      top: calc(100% + 4px);
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(212, 175, 55, 0.35);
-      border-radius: 18px;
+      border-radius: 12px;
       box-shadow: 0 10px 30px rgba(170, 119, 28, 0.12);
-      max-height: 200px; /* Reduced to guarantee it stays cleanly within bounds on short browser ports */
+      max-height: 120px; /* Isolated internal scrolling safely map dropdown states */
       overflow-y: auto;
       z-index: 999; 
       opacity: 0;
       visibility: hidden;
       transform: translateY(-8px);
       transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-      padding: 6px;
+      padding: 4px;
     }
 
     .custom-select-wrapper.open .custom-options-container {
@@ -376,11 +443,11 @@
     }
 
     .custom-option {
-      padding: 11px 14px;
-      font-size: 0.86rem;
+      padding: 8px 12px;
+      font-size: 0.78rem;
       color: #5C4015;
       cursor: pointer;
-      border-radius: 12px;
+      border-radius: 8px;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
@@ -413,34 +480,64 @@
     .result-display-container {
       width: 100%;
       background: #00A79D;
-      border-radius: 20px;
-      padding: 18px;
+      border-radius: 14px;
+      padding: 10px;
       text-align: center;
-      box-shadow: 0 6px 20px rgba(0, 167, 157, 0.25);
-      margin-top: 5px;
+      box-shadow: 0 4px 15px rgba(0, 167, 157, 0.25);
       position: relative;
       z-index: 1; 
+      flex-shrink: 0;
+      margin-top: 4px;
     }
 
     .result-label {
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.8);
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 1px;
     }
 
     .result-value {
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: 0.5px;
     }
 
+    /* Teal Themed Dynamic Yield List Display */
+    .scaler-list-display {
+      width: 100%;
+      max-height: 140px;
+      overflow-y: auto;
+      background: #00A79D;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 167, 157, 0.25);
+      padding: 10px 14px;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0, 167, 157, 0.25);
+    }
+
+    .scaler-list-display ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 0.8rem;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    .scaler-list-display ul::-webkit-scrollbar {
+      width: 4px;
+    }
+    .scaler-list-display ul::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
+    }
+
     /* Rounded Back Button Utility */
     .back-menu-btn {
-      margin-top: 16px; /* Tightened up spacing slightly to preserve vertical space */
+      margin-top: 10px; /* Tightened up spacing slightly to preserve vertical space */
       background: transparent;
       border: none;
       color: #AA771C;
@@ -585,7 +682,7 @@
       background: transparent;
     }
     .recipe-card::-webkit-scrollbar-thumb {
-      background: rgba(170, 119, 28, 0.25);
+      background: rgba(170, 119, 25, 0.25);
       border-radius: 10px;
     }
 
@@ -714,10 +811,215 @@
       animation: cardBuildUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
     .recipe-screen-wrapper.animate-build .converter-title,
+    .recipe-screen-wrapper.animate-build .heading-divider,
     .recipe-screen-wrapper.animate-build .category-bar,
     .recipe-screen-wrapper.animate-build .recipe-items-container {
       opacity: 0;
       animation: elementBuildUp 0.4s ease-out 0.2s forwards;
+    }
+
+    /* ==========================================
+       ADDED STATE: MULTI-TIMER PANEL UI
+       ========================================== */
+    .timer-dashboard {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .timer-dashboard::-webkit-scrollbar {
+      width: 4px;
+    }
+    .timer-dashboard::-webkit-scrollbar-thumb {
+      background: rgba(170, 119, 25, 0.25);
+      border-radius: 10px;
+    }
+
+    /* Premium Stopwatch Visual Module (Shifted downwards via spacing architecture) */
+    .clock-stopwatch-visual {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 45px 0 25px 0; /* Expanded top margin to safely lower the clock position */
+      flex-shrink: 0;
+    }
+
+    /* NON-STOP SMOOTH CONTINUOUS DIAL GLOW */
+    .stopwatch-dial {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid #00A79D;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px 5px rgba(0, 167, 157, 0.45), inset 0 2px 10px rgba(0, 167, 157, 0.1);
+      animation: clockDialGlowContinuous 3s infinite ease-in-out;
+    }
+
+    @keyframes clockDialGlowContinuous {
+      0% { box-shadow: 0 0 20px 4px rgba(0, 167, 157, 0.35), inset 0 2px 10px rgba(0, 167, 157, 0.05); }
+      50% { box-shadow: 0 0 32px 10px rgba(0, 167, 157, 0.6), inset 0 2px 10px rgba(0, 167, 157, 0.15); }
+      100% { box-shadow: 0 0 20px 4px rgba(0, 167, 157, 0.35), inset 0 2px 10px rgba(0, 167, 157, 0.05); }
+    }
+
+    .stopwatch-dial::before {
+      content: '';
+      position: absolute;
+      top: -7px;
+      width: 14px;
+      height: 7px;
+      background: #AA771C;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .stopwatch-hand {
+      position: absolute;
+      width: 2px;
+      height: 40px;
+      background: #AA771C;
+      bottom: 50%;
+      transform-origin: bottom center;
+      transform: rotate(0deg);
+      border-radius: 2px;
+      z-index: 2;
+    }
+
+    .stopwatch-center {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #00A79D;
+      border-radius: 50%;
+      z-index: 3;
+      border: 1px solid #ffffff;
+    }
+
+    .stopwatch-digital-display {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #7A5312;
+      letter-spacing: 0.5px;
+      background: rgba(245, 239, 228, 0.6);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* EXPLICIT TIMER PAGE EDGE GLOW ENGINE - REFINED TO REDUCE TEXT INPUT BLOCKS GLOW INTENSITY */
+    #timerScreen .glass-input-field {
+      animation: timerFieldsGlowPulse 3s infinite ease-in-out;
+    }
+
+    @keyframes timerFieldsGlowPulse {
+      0% { box-shadow: 0 0 0 1px rgba(0, 167, 157, 0.06); border-color: rgba(0, 167, 157, 0.2); }
+      50% { box-shadow: 0 0 0 2px rgba(0, 167, 157, 0.15); border-color: rgba(0, 167, 157, 0.35); }
+      100% { box-shadow: 0 0 0 1px rgba(0, 167, 157, 0.06); border-color: rgba(0, 167, 157, 0.2); }
+    }
+
+    #timerScreen .glass-input-field:focus {
+      border-color: #00A79D;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 167, 157, 0.25) !important;
+      animation: none;
+    }
+
+    /* Active Timer Node Pill - Static State Base Line */
+    .active-timer-node {
+      width: 100%;
+      background: #fdfbf7;
+      border: 1px solid rgba(170, 119, 28, 0.25);
+      border-radius: 20px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(170, 119, 28, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    /* Crimson Pulse Edge-Glow Alert Module on Alarm Trigger States - Fixed block outline clipping */
+    .active-timer-node.alarm-ringing {
+      border-color: #ff3b30;
+      animation: pulseAlertRed 1s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseAlertRed {
+      from { 
+        box-shadow: inset 0 0 10px rgba(255, 59, 48, 0.2);
+        border-color: rgba(255, 59, 48, 0.6);
+        background: rgba(255, 59, 48, 0.02);
+      }
+      to { 
+        box-shadow: inset 0 0 20px rgba(255, 59, 48, 0.5);
+        border-color: rgba(255, 59, 48, 1);
+        background: rgba(255, 59, 48, 0.1);
+      }
+    }
+
+    .timer-meta-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 60%;
+    }
+
+    .timer-meta-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #4A320A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .timer-meta-duration {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #00A79D;
+      font-family: monospace;
+      letter-spacing: 0.5px;
+    }
+    
+    .active-timer-node.alarm-ringing .timer-meta-duration {
+      color: #ff3b30;
+    }
+
+    .timer-control-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .timer-pill-btn {
+      border: none;
+      background: #00A79D;
+      color: #ffffff;
+      padding: 6px 12px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .timer-pill-btn.delete-btn {
+      background: transparent;
+      color: #AA771C;
+      border: 1px solid rgba(170, 119, 28, 0.4);
+    }
+
+    .timer-pill-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
     }
   </style>
 </head>
@@ -733,10 +1035,59 @@
       <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'recipeAlert')">
         3-Ingredient Recipes
       </button>
+      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openScaler')">
+        Recipe Scaler / Multiplier
+      </button>
       <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openConverter')">
         Kitchen Conversion Tool
       </button>
+      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openTimer')">
+        Multi-Timer Panel
+      </button>
     </div>
+
+  </div>
+
+  <div class="converter-screen-wrapper hidden" id="scalerScreen">
+    
+    <div class="converter-card">
+      <h2 class="converter-title">Recipe Scaler</h2>
+      
+      <div class="converter-section">
+        <h3 class="section-title-label">Serving Ratios</h3>
+        
+        <div class="input-split-grid">
+          <div class="input-row">
+            <label class="input-label">Base Serving</label>
+            <input type="number" id="baseServing" class="glass-input-field pure-white-field" value="4" min="1" placeholder="e.g., 4" oninput="calculateScaling()">
+          </div>
+          <div class="input-row">
+            <label class="input-label">Target Serving</label>
+            <input type="number" id="targetServing" class="glass-input-field pure-white-field" value="10" min="1" placeholder="e.g., 10" oninput="calculateScaling()">
+          </div>
+        </div>
+      </div>
+
+      <div class="converter-section" style="border-bottom: none; flex: 1; display: flex; flex-direction: column;">
+        <h3 class="section-title-label">Ingredients Specification</h3>
+        
+        <div class="input-row" style="margin-bottom: 4px;">
+          <label class="input-label">Raw Component Lists</label>
+          <input type="text" id="scalerInput" class="glass-input-field pure-white-field" value="1.5 Cups Flour, 2 tbsp Sugar, 200g Butter" placeholder="e.g., 2 cups milk, 3 tbsp sugar" oninput="calculateScaling()">
+        </div>
+
+        <label class="input-label">Scaled Dynamic Yield</label>
+        <div class="scaler-list-display" style="flex: 1;">
+          <ul id="scalerOutputList">
+            </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="back-menu-btn" onclick="toggleScreen('landingScreen', false)">
+      ← Back to Main Menu
+    </button>
 
   </div>
 
@@ -745,44 +1096,79 @@
     <div class="converter-card">
       <h2 class="converter-title">Kitchen Converter</h2>
       
-      <div class="input-row">
-        <label class="input-label">Enter Quantity</label>
-        <input type="number" id="convertValue" class="glass-input-field" value="1" placeholder="e.g., 2.5" oninput="calculateConversion()">
-      </div>
-
-      <div class="input-row" id="selectRowWrapper">
-        <label class="input-label">Measurement Metric</label>
-        <div class="custom-select-wrapper" id="customSelectWrapper">
-          <div class="custom-select-trigger" onclick="toggleCustomDropdown()">Cups ➔ Milliliters (ml)</div>
-          <div class="custom-options-container">
-            <div class="custom-option selected" data-value="cupsToMl" onclick="selectCustomOption(this)">Cups ➔ Milliliters (ml)</div>
-            <div class="custom-option" data-value="mlToCups" onclick="selectCustomOption(this)">Milliliters (ml) ➔ Cups</div>
-            <div class="custom-option" data-value="tbspToTsp" onclick="selectCustomOption(this)">Tablespoons (tbsp) ➔ Teaspoons (tsp)</div>
-            <div class="custom-option" data-value="tspToTbsp" onclick="selectCustomOption(this)">Teaspoons (tsp) ➔ Tablespoons (tbsp)</div>
-            <div class="custom-option" data-value="tbspToMl" onclick="selectCustomOption(this)">Tablespoons (tbsp) ➔ Milliliters (ml)</div>
-            <div class="custom-option" data-value="mlToTbsp" onclick="selectCustomOption(this)">Milliliters (ml) ➔ Tablespoons (tbsp)</div>
-            <div class="custom-option" data-value="tspToMl" onclick="selectCustomOption(this)">Teaspoons (tsp) ➔ Milliliters (ml)</div>
-            <div class="custom-option" data-value="mlToTsp" onclick="selectCustomOption(this)">Milliliters (ml) ➔ Teaspoons (tsp)</div>
-            <div class="custom-option" data-value="gToOz" onclick="selectCustomOption(this)">Grams (g) ➔ Ounces (oz)</div>
-            <div class="custom-option" data-value="ozToG" onclick="selectCustomOption(this)">Ounces (oz) ➔ Grams (g)</div>
-            <div class="custom-option" data-value="kgToLbs" onclick="selectCustomOption(this)">Kilograms (kg) ➔ Pounds (lbs)</div>
-            <div class="custom-option" data-value="lbsToKg" onclick="selectCustomOption(this)">Pounds (lbs) ➔ Kilograms (kg)</div>
-            <div class="custom-option" data-value="flOzToMl" onclick="selectCustomOption(this)">Fluid Ounces (fl oz) ➔ Milliliters (ml)</div>
-            <div class="custom-option" data-value="mlToFlOz" onclick="selectCustomOption(this)">Milliliters (ml) ➔ Fluid Ounces (fl oz)</div>
-            <div class="custom-option" data-value="qtToL" onclick="selectCustomOption(this)">Quarts (qt) ➔ Liters (L)</div>
-            <div class="custom-option" data-value="lToQt" onclick="selectCustomOption(this)">Liters (L) ➔ Quarts (qt)</div>
-            <div class="custom-option" data-value="galToL" onclick="selectCustomOption(this)">Gallons (gal) ➔ Liters (L)</div>
-            <div class="custom-option" data-value="lToGal" onclick="selectCustomOption(this)">Liters (L) ➔ Gallons (gal)</div>
-            <div class="custom-option" data-value="ptToMl" onclick="selectCustomOption(this)">Pints (pt) ➔ Milliliters (ml)</div>
-            <div class="custom-option" data-value="mlToPt" onclick="selectCustomOption(this)">Milliliters (ml) ➔ Pints (pt)</div>
-          </div>
+      <div class="converter-section" id="standardSectionWrapper">
+        <h3 class="section-title-label">Standard Measurement Converter</h3>
+        
+        <div class="input-row">
+          <label class="input-label">Enter Quantity</label>
+          <input type="number" id="convertValue" class="glass-input-field pure-white-field" value="1" placeholder="e.g., 2.5" oninput="calculateConversion()">
         </div>
-        <input type="hidden" id="convertType" value="cupsToMl">
+
+        <div class="input-row" id="selectRowWrapper">
+          <label class="input-label">Measurement Metric</label>
+          <div class="custom-select-wrapper" id="customSelectWrapper">
+            <div class="custom-select-trigger pure-white-field" onclick="toggleCustomDropdown('customSelectWrapper', 'selectRowWrapper')">Cups ➔ Milliliters (ml)</div>
+            <div class="custom-options-container">
+              <div class="custom-option selected" data-value="cupsToMl" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Cups ➔ Milliliters (ml)</div>
+              <div class="custom-option" data-value="mlToCups" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Milliliters (ml) ➔ Cups</div>
+              <div class="custom-option" data-value="tbspToTsp" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Tablespoons (tbsp) ➔ Teaspoons (tsp)</div>
+              <div class="custom-option" data-value="tspToTbsp" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Teaspoons (tsp) ➔ Tablespoons (tbsp)</div>
+              <div class="custom-option" data-value="tbspToMl" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Tablespoons (tbsp) ➔ Milliliters (ml)</div>
+              <div class="custom-option" data-value="mlToTbsp" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Milliliters (ml) ➔ Tablespoons (tbsp)</div>
+              <div class="custom-option" data-value="tspToMl" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Teaspoons (tsp) ➔ Milliliters (ml)</div>
+              <div class="custom-option" data-value="mlToTsp" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Milliliters (ml) ➔ Teaspoons (tsp)</div>
+              <div class="custom-option" data-value="gToOz" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Grams (g) ➔ Ounces (oz)</div>
+              <div class="custom-option" data-value="ozToG" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Ounces (oz) ➔ Grams (g)</div>
+              <div class="custom-option" data-value="kgToLbs" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Kilograms (kg) ➔ Pounds (lbs)</div>
+              <div class="custom-option" data-value="lbsToKg" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Pounds (lbs) ➔ Kilograms (kg)</div>
+              <div class="custom-option" data-value="flOzToMl" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Fluid Ounces (fl oz) ➔ Milliliters (ml)</div>
+              <div class="custom-option" data-value="mlToFlOz" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Milliliters (ml) ➔ Fluid Ounces (fl oz)</div>
+              <div class="custom-option" data-value="qtToL" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Quarts (qt) ➔ Liters (L)</div>
+              <div class="custom-option" data-value="lToQt" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Liters (L) ➔ Quarts (qt)</div>
+              <div class="custom-option" data-value="galToL" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Gallons (gal) ➔ Liters (L)</div>
+              <div class="custom-option" data-value="lToGal" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Liters (L) ➔ Gallons (gal)</div>
+              <div class="custom-option" data-value="ptToMl" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Pints (pt) ➔ Milliliters (ml)</div>
+              <div class="custom-option" data-value="mlToPt" onclick="selectCustomOption(this, 'customSelectWrapper', 'selectRowWrapper', 'convertType')">Milliliters (ml) ➔ Pints (pt)</div>
+            </div>
+          </div>
+          <input type="hidden" id="convertType" value="cupsToMl">
+        </div>
+
+        <div class="result-display-container">
+          <div class="result-label">Standard Measure</div>
+          <div class="result-value" id="resultOutput">250.00 ml</div>
+        </div>
       </div>
 
-      <div class="result-display-container">
-        <div class="result-label">Converted Measure</div>
-        <div class="result-value" id="resultOutput">240.00 ml</div>
+      <div class="converter-section" id="densitySectionWrapper">
+        <h3 class="section-title-label">Density Engine (Volume ➔ Mass)</h3>
+
+        <div class="input-row">
+          <label class="input-label">Enter Volume (Cups)</label>
+          <input type="number" id="densityValue" class="glass-input-field pure-white-field" value="1" placeholder="e.g., 1" oninput="calculateConversion()">
+        </div>
+
+        <div class="input-row" id="densityRowWrapper">
+          <label class="input-label">Ingredient Profile</label>
+          <div class="custom-select-wrapper" id="customDensityWrapper">
+            <div class="custom-select-trigger pure-white-field" onclick="toggleCustomDropdown('customDensityWrapper', 'densityRowWrapper')">Cake / Plain Flour</div>
+            <div class="custom-options-container">
+              <div class="custom-option selected" data-value="flour" onclick="selectCustomOption(this, 'customDensityWrapper', 'densityRowWrapper', 'densityType')">Cake / Plain Flour</div>
+              <div class="custom-option" data-value="sugar" onclick="selectCustomOption(this, 'customDensityWrapper', 'densityRowWrapper', 'densityType')">White Granulated Sugar</div>
+              <div class="custom-option" data-value="icingSugar" onclick="selectCustomOption(this, 'customDensityWrapper', 'densityRowWrapper', 'densityType')">Icing / Powdered Sugar</div>
+              <div class="custom-option" data-value="butter" onclick="selectCustomOption(this, 'customDensityWrapper', 'densityRowWrapper', 'densityType')">Butter (Melted/Solid)</div>
+              <div class="custom-option" data-value="oil" onclick="selectCustomOption(this, 'customDensityWrapper', 'densityRowWrapper', 'densityType')">Vegetable / Coconut Oil</div>
+              <div class="custom-option" data-value="honey" onclick="selectCustomOption(this, 'customDensityWrapper', 'densityRowWrapper', 'densityType')">Pure Honey / Syrup</div>
+              <div class="custom-option" data-value="milk" onclick="selectCustomOption(this, 'customDensityWrapper', 'densityRowWrapper', 'densityType')">Whole Milk / Cream</div>
+            </div>
+          </div>
+          <input type="hidden" id="densityType" value="flour">
+        </div>
+
+        <div class="result-display-container">
+          <div class="result-label">Density Weighted Mass</div>
+          <div class="result-value" id="densityResultOutput">132.50 g</div>
+        </div>
       </div>
 
     </div>
@@ -797,6 +1183,7 @@
     
     <div class="recipe-card">
       <h2 class="converter-title">Recipes</h2>
+      <hr class="heading-divider">
       
       <div class="category-bar">
         <button class="category-capsule active" onclick="filterRecipes('sweet')">Sweet Treats</button>
@@ -814,6 +1201,52 @@
       ← Back to Main Menu
     </button>
 
+  </div>
+
+  <div class="recipe-screen-wrapper hidden" id="timerScreen">
+    <div class="recipe-card">
+      <h2 class="converter-title">Multi-Timer Panel</h2>
+      <hr class="heading-divider">
+
+      <div class="clock-stopwatch-visual">
+        <div class="stopwatch-dial">
+          <div class="stopwatch-hand" id="masterClockHand"></div>
+          <div class="stopwatch-center"></div>
+          <div class="stopwatch-digital-display" id="masterClockDigital">00:00</div>
+        </div>
+      </div>
+
+      <div class="converter-section" style="border-bottom: 1px dashed rgba(170, 119, 28, 0.2); width: 100%;">
+        <div class="input-row">
+          <label class="input-label">Timer Name / Label</label>
+          <input type="text" id="timerLabel" class="glass-input-field pure-white-field" placeholder="e.g., Pasta Boiler">
+        </div>
+        <div class="input-split-grid" style="margin-top: 4px;">
+          <div class="input-row">
+            <label class="input-label">Minutes</label>
+            <input type="number" id="timerMin" class="glass-input-field pure-white-field" value="5" min="0" max="180">
+          </div>
+          <div class="input-row">
+            <label class="input-label">Seconds</label>
+            <input type="number" id="timerSec" class="glass-input-field pure-white-field" value="0" min="0" max="59">
+          </div>
+        </div>
+        <button class="timer-pill-btn" style="margin-top: 8px; padding: 10px; width: 100%; letter-spacing: 1px;" onclick="createNewTimer()">
+          + Launch New Countdown
+        </button>
+      </div>
+
+      <div class="section-micro-label" style="align-self: flex-start; margin-top: 10px;">Active Timers</div>
+      
+      <div class="timer-dashboard" id="timerDashboardContainer">
+        </div>
+    </div>
+
+    <audio id="alarmAudioSlot" src="" loop></audio>
+
+    <button class="back-menu-btn" onclick="toggleScreen('landingScreen', false)">
+      ← Back to Main Menu
+    </button>
   </div>
 
   <script>
@@ -841,6 +1274,20 @@
       ]
     };
 
+    // Global Density Map Matrix (g/ml constants matching UK definitions)
+    const ingredientDensities = {
+      flour: 0.53,       // 1 cup UK (250ml) ~ 132.5g
+      sugar: 0.84,       // 1 cup UK (250ml) ~ 210g
+      icingSugar: 0.56,  // 1 cup UK (250ml) ~ 140g
+      butter: 0.92,      // 1 cup UK (250ml) ~ 230g
+      oil: 0.91,         // 1 cup UK (250ml) ~ 227.5g
+      honey: 1.42,       // 1 cup UK (250ml) ~ 355g
+      milk: 1.03         // 1 cup UK (250ml) ~ 257.5g
+    };
+
+    let localTimersEngine = [];
+    let masterIntervalId = null;
+
     function handleMenuClick(event, action) {
       createMilkSplash(event);
       
@@ -849,6 +1296,10 @@
           toggleScreen('recipeScreen', true);
         } else if (action === 'openConverter') {
           toggleScreen('converterScreen', true);
+        } else if (action === 'openScaler') {
+          toggleScreen('scalerScreen', true);
+        } else if (action === 'openTimer') {
+          toggleScreen('timerScreen', true);
         }
       }, 220);
     }
@@ -883,12 +1334,18 @@
       const landing = document.getElementById('landingScreen');
       const converter = document.getElementById('converterScreen');
       const recipeHub = document.getElementById('recipeScreen');
+      const scaler = document.getElementById('scalerScreen');
+      const timerNode = document.getElementById('timerScreen');
       
       landing.classList.add('hidden');
       converter.classList.add('hidden');
       recipeHub.classList.add('hidden');
+      scaler.classList.add('hidden');
+      timerNode.classList.add('hidden');
       converter.classList.remove('animate-build');
       recipeHub.classList.remove('animate-build');
+      scaler.classList.remove('animate-build');
+      timerNode.classList.remove('animate-build');
       
       if (isOpeningConverter) {
         const activeTarget = document.getElementById(screenId);
@@ -898,18 +1355,34 @@
           calculateConversion();
         } else if (screenId === 'recipeScreen') {
           filterRecipes('sweet'); 
+        } else if (screenId === 'scalerScreen') {
+          calculateScaling();
+        } else if (screenId === 'timerScreen') {
+          renderTimersDashboard();
+          initMasterClockEngine();
         }
       } else {
         document.getElementById('customSelectWrapper').classList.remove('open');
         document.getElementById('selectRowWrapper').classList.remove('dropdown-active');
+        document.getElementById('customDensityWrapper').classList.remove('open');
+        document.getElementById('densityRowWrapper').classList.remove('dropdown-active');
         landing.classList.remove('hidden');
       }
     }
 
-    function toggleCustomDropdown() {
-      const wrapper = document.getElementById('customSelectWrapper');
-      const rowWrapper = document.getElementById('selectRowWrapper');
+    function toggleCustomDropdown(wrapperId, rowId) {
+      const wrapper = document.getElementById(wrapperId);
+      const rowWrapper = document.getElementById(rowId);
       
+      // Close other dropdowns first to maintain cleaner overlay flow
+      if (wrapperId === 'customSelectWrapper') {
+        document.getElementById('customDensityWrapper').classList.remove('open');
+        document.getElementById('densityRowWrapper').classList.remove('dropdown-active');
+      } else {
+        document.getElementById('customSelectWrapper').classList.remove('open');
+        document.getElementById('selectRowWrapper').classList.remove('dropdown-active');
+      }
+
       wrapper.classList.toggle('open');
       
       if (wrapper.classList.contains('open')) {
@@ -919,11 +1392,11 @@
       }
     }
 
-    function selectCustomOption(element) {
-      const parent = document.getElementById('customSelectWrapper');
-      const rowWrapper = document.getElementById('selectRowWrapper');
+    function selectCustomOption(element, wrapperId, rowId, hiddenInputId) {
+      const parent = document.getElementById(wrapperId);
+      const rowWrapper = document.getElementById(rowId);
       const trigger = parent.querySelector('.custom-select-trigger');
-      const targetInput = document.getElementById('convertType');
+      const targetInput = document.getElementById(hiddenInputId);
       
       parent.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
       element.classList.add('selected');
@@ -1016,113 +1489,273 @@
     document.addEventListener('click', function(e) {
       const selectWrapper = document.getElementById('customSelectWrapper');
       const rowWrapper = document.getElementById('selectRowWrapper');
-      if (selectWrapper && !selectWrapper.contains(e.target)) {
+      const densityWrapper = document.getElementById('customDensityWrapper');
+      const densityRowWrapper = document.getElementById('densityRowWrapper');
+      
+      if (selectWrapper && !selectWrapper.contains(e.target) && !e.target.closest('#selectRowWrapper')) {
         selectWrapper.classList.remove('open');
         rowWrapper.classList.remove('dropdown-active');
+      }
+      if (densityWrapper && !densityWrapper.contains(e.target) && !e.target.closest('#densityRowWrapper')) {
+        densityWrapper.classList.remove('open');
+        densityRowWrapper.classList.remove('dropdown-active');
       }
     }, true);
 
     function calculateConversion() {
+      // 1. CALCULATE STANDARD MODULE
       const val = parseFloat(document.getElementById('convertValue').value);
       const type = document.getElementById('convertType').value;
       const output = document.getElementById('resultOutput');
       
       if (isNaN(val) || val < 0) {
         output.innerText = "--";
+      } else {
+        let result = 0;
+        let unit = "";
+
+        switch(type) {
+          case "cupsToMl": result = val * 250; unit = "ml"; break;
+          case "mlToCups": result = val / 250; unit = "cups"; break;
+          case "tbspToTsp": result = val * 3; unit = "tsp"; break;
+          case "tspToTbsp": result = val / 3; unit = "tbsp"; break;
+          case "tbspToMl": result = val * 15; unit = "ml"; break;
+          case "mlToTbsp": result = val / 15; unit = "tbsp"; break;
+          case "tspToMl": result = val * 5; unit = "ml"; break;
+          case "mlToTsp": result = val / 5; unit = "tsp"; break;
+          case "gToOz": result = val / 28.34952; unit = "oz"; break;
+          case "ozToG": result = val * 28.34952; unit = "g"; break;
+          case "kgToLbs": result = val * 2.20462; unit = "lbs"; break;
+          case "lbsToKg": result = val / 2.20462; unit = "kg"; break;
+          case "flOzToMl": result = val * 28.41306; unit = "ml"; break;
+          case "mlToFlOz": result = val / 28.41306; unit = "fl oz"; break;
+          case "qtToL": result = val * 1.13652; unit = "L"; break;
+          case "lToQt": result = val / 1.13652; unit = "qt"; break;
+          case "galToL": result = val * 4.54609; unit = "L"; break;
+          case "lToGal": result = val / 4.54609; unit = "gal"; break;
+          case "ptToMl": result = val * 568.26125; unit = "ml"; break;
+          case "mlToPt": result = val / 568.26125; unit = "pt"; break;
+        }
+        output.innerText = Number.isInteger(result) ? `${result} ${unit}` : `${result.toFixed(2)} ${unit}`;
+      }
+
+      // 2. CALCULATE ISOLATED DENSITY MODULE (Cups to Grams Mass)
+      const dVal = parseFloat(document.getElementById('densityValue').value);
+      const density = document.getElementById('densityType').value;
+      const dOutput = document.getElementById('densityResultOutput');
+
+      if (isNaN(dVal) || dVal < 0) {
+        dOutput.innerText = "--";
+      } else {
+        const factor = ingredientDensities[density];
+        // 1 Cup standard (250ml) multiplied by specific mass factors
+        let dResult = (dVal * 250) * factor;
+        dOutput.innerText = Number.isInteger(dResult) ? `${dResult} g` : `${dResult.toFixed(2)} g`;
+      }
+    }
+
+    function calculateScaling() {
+      const base = parseFloat(document.getElementById('baseServing').value);
+      const target = parseFloat(document.getElementById('targetServing').value);
+      const rawInput = document.getElementById('scalerInput').value;
+      const outputList = document.getElementById('scalerOutputList');
+      
+      outputList.innerHTML = "";
+      
+      if (isNaN(base) || isNaN(target) || base <= 0 || target <= 0 || !rawInput.trim()) {
+        outputList.innerHTML = "<li>Specify valid numbers and ingredients above...</li>";
+        return;
+      }
+      
+      const ratio = target / base;
+      // Split ingredients cleanly by commas
+      const ingredients = rawInput.split(',');
+      
+      ingredients.forEach(item => {
+        let cleanItem = item.trim();
+        if (!cleanItem) return;
+        
+        // Regex looks for decimals or integer numbers at the start or inside the string
+        const numRegex = /(\d+(?:\.\d+)?)/g;
+        let scaledStr = cleanItem.replace(numRegex, (match) => {
+          let multipliedValue = parseFloat(match) * ratio;
+          return Number.isInteger(multipliedValue) ? multipliedValue : multipliedValue.toFixed(2);
+        });
+        
+        const li = document.createElement('li');
+        li.innerText = scaledStr;
+        outputList.appendChild(li);
+      });
+    }
+
+    // ==========================================
+    // MULTI-TIMER CONTROLLER MATRIX ENGINE
+    // ==========================================
+    function createNewTimer() {
+      const labelInput = document.getElementById('timerLabel');
+      const minInput = document.getElementById('timerMin');
+      const secInput = document.getElementById('timerSec');
+
+      let label = labelInput.value.trim() || "Kitchen Task";
+      let minutes = parseInt(minInput.value) || 0;
+      let seconds = parseInt(secInput.value) || 0;
+      let totalSeconds = (minutes * 60) + seconds;
+
+      if (totalSeconds <= 0) return;
+
+      const newTimer = {
+        id: Date.now(),
+        label: label,
+        remaining: totalSeconds,
+        initial: totalSeconds,
+        status: 'running'
+      };
+
+      localTimersEngine.push(newTimer);
+      labelInput.value = "";
+      renderTimersDashboard();
+    }
+
+    function renderTimersDashboard() {
+      const container = document.getElementById('timerDashboardContainer');
+      container.innerHTML = "";
+
+      if (localTimersEngine.length === 0) {
+        container.innerHTML = `<div style="text-align:center; font-size:0.75rem; color:#AA771C; margin-top:20px;">No timers currently operational.</div>`;
         return;
       }
 
-      let result = 0;
-      let unit = "";
+      localTimersEngine.forEach(timer => {
+        const node = document.createElement('div');
+        node.classList.add('active-timer-node');
+        if (timer.remaining === 0) {
+          node.classList.add('alarm-ringing');
+        }
 
-      switch(type) {
-        case "cupsToMl":
-          result = val * 240;
-          unit = "ml";
-          break;
-        case "mlToCups":
-          result = val / 240;
-          unit = "cups";
-          break;
-        case "tbspToTsp":
-          result = val * 3;
-          unit = "tsp";
-          break;
-        case "tspToTbsp":
-          result = val / 3;
-          unit = "tbsp";
-          break;
-        case "tbspToMl":
-          result = val * 14.7868;
-          unit = "ml";
-          break;
-        case "mlToTbsp":
-          result = val / 14.7868;
-          unit = "tbsp";
-          break;
-        case "tspToMl":
-          result = val * 4.92892;
-          unit = "ml";
-          break;
-        case "mlToTsp":
-          result = val / 4.92892;
-          unit = "tsp";
-          break;
-        case "gToOz":
-          result = val / 28.3495;
-          unit = "oz";
-          break;
-        case "ozToG":
-          result = val * 28.3495;
-          unit = "g";
-          break;
-        case "kgToLbs":
-          result = val * 2.20462;
-          unit = "lbs";
-          break;
-        case "lbsToKg":
-          result = val / 2.20462;
-          unit = "kg";
-          break;
-        case "flOzToMl":
-          result = val * 29.5735;
-          unit = "ml";
-          break;
-        case "mlToFlOz":
-          result = val / 29.5735;
-          unit = "fl oz";
-          break;
-        case "qtToL":
-          result = val * 0.946353;
-          unit = "L";
-          break;
-        case "lToQt":
-          result = val / 0.946353;
-          unit = "qt";
-          break;
-        case "galToL":
-          result = val * 3.78541;
-          unit = "L";
-          break;
-        case "lToGal":
-          result = val / 3.78541;
-          unit = "gal";
-          break;
-        case "ptToMl":
-          result = val * 473.176;
-          unit = "ml";
-          break;
-        case "mlToPt":
-          result = val / 473.176;
-          unit = "pt";
-          break;
+        let displayMin = Math.floor(timer.remaining / 60).toString().padStart(2, '0');
+        let displaySec = (timer.remaining % 60).toString().padStart(2, '0');
+
+        let controlBtnMarkup = timer.status === 'running' 
+          ? `<button class="timer-pill-btn" onclick="toggleTimerStatus(${timer.id})">Pause</button>`
+          : `<button class="timer-pill-btn" style="background:#AA771C;" onclick="toggleTimerStatus(${timer.id})">Start</button>`;
+
+        if (timer.remaining === 0) {
+          controlBtnMarkup = `<button class="timer-pill-btn" style="background:#7A5312;" onclick="silenceTimerAlarm(${timer.id})">Stop</button>`;
+        }
+
+        node.innerHTML = `
+          <div class="timer-meta-info">
+            <span class="timer-meta-label">${timer.label}</span>
+            <span class="timer-meta-duration">${displayMin}:${displaySec}</span>
+          </div>
+          <div class="timer-control-actions">
+            ${controlBtnMarkup}
+            <button class="timer-pill-btn delete-btn" onclick="removeTimerNode(${timer.id})">Clear</button>
+          </div>
+        `;
+        container.appendChild(node);
+      });
+    }
+
+    function toggleTimerStatus(id) {
+      const timer = localTimersEngine.find(t => t.id === id);
+      if (timer && timer.remaining > 0) {
+        timer.status = timer.status === 'running' ? 'paused' : 'running';
+        renderTimersDashboard();
+        // Force the physical dial and text display state to update immediately on button click
+        syncPhysicalClockDial();
       }
+    }
 
-      output.innerText = Number.isInteger(result) ? `${result} ${unit}` : `${result.toFixed(2)} ${unit}`;
+    function removeTimerNode(id) {
+      localTimersEngine = localTimersEngine.filter(t => t.id !== id);
+      renderTimersDashboard();
+      checkAlarmStates();
+      syncPhysicalClockDial();
+    }
+
+    function silenceTimerAlarm(id) {
+      const timer = localTimersEngine.find(t => t.id === id);
+      if (timer) {
+        timer.remaining = timer.initial;
+        timer.status = 'paused';
+        renderTimersDashboard();
+        checkAlarmStates();
+        syncPhysicalClockDial();
+      }
+    }
+
+    // Isolated syncing function handling calculations cleanly across pauses and varying minute/second profiles
+    function syncPhysicalClockDial() {
+      let highestProgressTimer = null;
+      let maxPct = -1;
+
+      localTimersEngine.forEach(timer => {
+        let pct = (timer.initial - timer.remaining) / timer.initial;
+        if (pct > maxPct && timer.remaining > 0) {
+          maxPct = pct;
+          highestProgressTimer = timer;
+        }
+      });
+
+      const hand = document.getElementById('masterClockHand');
+      const textDisplay = document.getElementById('masterClockDigital');
+
+      if (highestProgressTimer) {
+        let currentSeconds = highestProgressTimer.remaining % 60;
+        let degrees = currentSeconds * 6;
+        hand.style.transform = `rotate(${degrees}deg)`;
+
+        let m = Math.floor(highestProgressTimer.remaining / 60).toString().padStart(2, '0');
+        let s = (highestProgressTimer.remaining % 60).toString().padStart(2, '0');
+        textDisplay.innerText = `${m}:${s}`;
+      } else {
+        hand.style.transform = `rotate(0deg)`;
+        textDisplay.innerText = "00:00";
+      }
+    }
+
+    function initMasterClockEngine() {
+      if (masterIntervalId) return;
+
+      masterIntervalId = setInterval(() => {
+        localTimersEngine.forEach(timer => {
+          if (timer.status === 'running' && timer.remaining > 0) {
+            timer.remaining--;
+
+            if (timer.remaining === 0) {
+              triggerSystemAlarmNotification();
+            }
+          }
+        });
+
+        if (localTimersEngine.some(t => t.remaining === 0)) {
+          triggerSystemAlarmNotification();
+        }
+
+        renderTimersDashboard();
+        syncPhysicalClockDial();
+      }, 1000);
+    }
+
+    function triggerSystemAlarmNotification() {
+      const audio = document.getElementById('alarmAudioSlot');
+      if (audio && audio.paused && audio.src) {
+        audio.play().catch(() => {});
+      }
+    }
+
+    function checkAlarmStates() {
+      const audio = document.getElementById('alarmAudioSlot');
+      const holdsActiveAlarms = localTimersEngine.some(t => t.remaining === 0);
+      if (!holdsActiveAlarms && audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
     }
 
     window.addEventListener('click', function(e) {
-      if(!e.target.closest('.shimmer-glass-btn')) {
+      if(!e.target.closest('.shimmer-glass-btn') && !e.target.closest('.custom-select-trigger') && !e.target.closest('.glass-input-field') && !e.target.closest('.timer-pill-btn')) {
         createMilkSplash(e);
       }
     });
