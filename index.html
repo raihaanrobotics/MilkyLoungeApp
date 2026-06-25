@@ -116,7 +116,8 @@
     .shimmer-glass-btn:focus-visible,
     .category-capsule:focus,
     .category-capsule:focus-visible,
-    .back-menu-btn:focus {
+    .back-menu-btn:focus,
+    .hamburger-icon:focus {
       outline: none !important;
     }
 
@@ -1021,6 +1022,109 @@
       opacity: 0.9;
       transform: translateY(-1px);
     }
+
+    /* ==========================================
+       HAMBURGER SLIDE MENU CONFIGURATIONS
+       ========================================== */
+    .hamburger-icon {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      width: 22px;
+      height: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 100;
+      background: transparent;
+      border: none;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger-icon span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: #AA771C;
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-icon.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+      background-color: #00A79D;
+    }
+
+    .hamburger-icon.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-icon.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+      background-color: #00A79D;
+    }
+
+    .hamburger-flyout-overlay {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px 24px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, visibility 0.4s;
+      border-radius: 30px;
+    }
+
+    .hamburger-flyout-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    .hamburger-nav-pill {
+      width: 100%;
+      max-width: 280px;
+      padding: 14px 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #00A79D;
+      background: #fdfbf7;
+      border: 1px solid rgba(0, 167, 157, 0.3);
+      border-radius: 30px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .hamburger-nav-pill:hover {
+      background: rgba(0, 167, 157, 0.05);
+    }
+
+    .hamburger-nav-pill.active-page-pill {
+      color: #7A5312;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid transparent;
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      background-image: linear-gradient(to right, #ffffff, #ffffff), 
+                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 100%, 300% 100%;
+      animation: borderShimmer 4s linear infinite;
+      box-shadow: 0 4px 15px rgba(170, 119, 28, 0.12);
+    }
   </style>
 </head>
 <body>
@@ -1050,6 +1154,20 @@
 
   <div class="converter-screen-wrapper hidden" id="scalerScreen">
     
+    <button class="hamburger-icon" onclick="toggleHamburgerMenu('scalerHamburger', 'scalerOverlay')" id="scalerHamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="hamburger-flyout-overlay" id="scalerOverlay">
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('landingScreen')">Main Menu</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('recipeScreen')">3-Ingredient Recipes</button>
+      <button class="hamburger-nav-pill active-page-pill" onclick="navigateFromMenu('scalerScreen')">Recipe Scaler</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('converterScreen')">Kitchen Converter</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('timerScreen')">Multi-Timer Panel</button>
+    </div>
+
     <div class="converter-card">
       <h2 class="converter-title">Recipe Scaler</h2>
       
@@ -1085,14 +1203,24 @@
 
     </div>
 
-    <button class="back-menu-btn" onclick="toggleScreen('landingScreen', false)">
-      ← Back to Main Menu
-    </button>
-
   </div>
 
   <div class="converter-screen-wrapper hidden" id="converterScreen">
     
+    <button class="hamburger-icon" onclick="toggleHamburgerMenu('converterHamburger', 'converterOverlay')" id="converterHamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="hamburger-flyout-overlay" id="converterOverlay">
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('landingScreen')">Main Menu</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('recipeScreen')">3-Ingredient Recipes</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('scalerScreen')">Recipe Scaler</button>
+      <button class="hamburger-nav-pill active-page-pill" onclick="navigateFromMenu('converterScreen')">Kitchen Converter</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('timerScreen')">Multi-Timer Panel</button>
+    </div>
+
     <div class="converter-card">
       <h2 class="converter-title">Kitchen Converter</h2>
       
@@ -1173,14 +1301,24 @@
 
     </div>
 
-    <button class="back-menu-btn" onclick="toggleScreen('landingScreen', false)">
-      ← Back to Main Menu
-    </button>
-
   </div>
 
   <div class="recipe-screen-wrapper hidden" id="recipeScreen">
     
+    <button class="hamburger-icon" onclick="toggleHamburgerMenu('recipeHamburger', 'recipeOverlay')" id="recipeHamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="hamburger-flyout-overlay" id="recipeOverlay">
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('landingScreen')">Main Menu</button>
+      <button class="hamburger-nav-pill active-page-pill" onclick="navigateFromMenu('recipeScreen')">3-Ingredient Recipes</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('scalerScreen')">Recipe Scaler</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('converterScreen')">Kitchen Converter</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('timerScreen')">Multi-Timer Panel</button>
+    </div>
+
     <div class="recipe-card">
       <h2 class="converter-title">Recipes</h2>
       <hr class="heading-divider">
@@ -1197,13 +1335,24 @@
 
     </div>
 
-    <button class="back-menu-btn" onclick="toggleScreen('landingScreen', false)">
-      ← Back to Main Menu
-    </button>
-
   </div>
 
   <div class="recipe-screen-wrapper hidden" id="timerScreen">
+    
+    <button class="hamburger-icon" onclick="toggleHamburgerMenu('timerHamburger', 'timerOverlay')" id="timerHamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="hamburger-flyout-overlay" id="timerOverlay">
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('landingScreen')">Main Menu</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('recipeScreen')">3-Ingredient Recipes</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('scalerScreen')">Recipe Scaler</button>
+      <button class="hamburger-nav-pill" onclick="navigateFromMenu('converterScreen')">Kitchen Converter</button>
+      <button class="hamburger-nav-pill active-page-pill" onclick="navigateFromMenu('timerScreen')">Multi-Timer Panel</button>
+    </div>
+
     <div class="recipe-card">
       <h2 class="converter-title">Multi-Timer Panel</h2>
       <hr class="heading-divider">
@@ -1244,9 +1393,6 @@
 
     <audio id="alarmAudioSlot" src="" loop></audio>
 
-    <button class="back-menu-btn" onclick="toggleScreen('landingScreen', false)">
-      ← Back to Main Menu
-    </button>
   </div>
 
   <script>
@@ -1346,6 +1492,10 @@
       recipeHub.classList.remove('animate-build');
       scaler.classList.remove('animate-build');
       timerNode.classList.remove('animate-build');
+      
+      // Close any open flyout overlays explicitly
+      document.querySelectorAll('.hamburger-flyout-overlay').forEach(o => o.classList.remove('active'));
+      document.querySelectorAll('.hamburger-icon').forEach(i => i.classList.remove('open'));
       
       if (isOpeningConverter) {
         const activeTarget = document.getElementById(screenId);
@@ -1754,8 +1904,27 @@
       }
     }
 
+    /* ==========================================
+       DYNAMIC HAMBURGER NAVIGATION ENGINE
+       ========================================== */
+    function toggleHamburgerMenu(burgerId, overlayId) {
+      const icon = document.getElementById(burgerId);
+      const overlay = document.getElementById(overlayId);
+      
+      const isOpen = icon.classList.toggle('open');
+      overlay.classList.toggle('active', isOpen);
+    }
+
+    function navigateFromMenu(destinationScreenId) {
+      if (destinationScreenId === 'landingScreen') {
+        toggleScreen('landingScreen', false);
+      } else {
+        toggleScreen(destinationScreenId, true);
+      }
+    }
+
     window.addEventListener('click', function(e) {
-      if(!e.target.closest('.shimmer-glass-btn') && !e.target.closest('.custom-select-trigger') && !e.target.closest('.glass-input-field') && !e.target.closest('.timer-pill-btn')) {
+      if(!e.target.closest('.shimmer-glass-btn') && !e.target.closest('.custom-select-trigger') && !e.target.closest('.glass-input-field') && !e.target.closest('.timer-pill-btn') && !e.target.closest('.hamburger-icon') && !e.target.closest('.hamburger-flyout-overlay')) {
         createMilkSplash(e);
       }
     });
