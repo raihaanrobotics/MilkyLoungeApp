@@ -29,7 +29,7 @@
       align-items: center;    
       background: linear-gradient(135deg, #fdfbf7 0%, #ffffff 50%, #f5efe4 100%);
       overflow: hidden;
-      padding: 16px 12px; /* Uniform safe buffer from all screen edges */
+      padding: 16px 14px; /* Uniform safe buffer from all screen edges including shimmer bounds */
       color-scheme: light;
     }
 
@@ -152,14 +152,15 @@
 
     .converter-screen-wrapper {
       position: relative;
-      width: 100%;
-      max-width: 380px; /* Expanded structural boundaries to reduce blank margins */
-      height: 96dvh; /* Increased container size vertically for maximum safe visual expansion */
+      width: calc(100% - 4px); /* Tiny offset adjustment to perfectly show container border outlines */
+      max-width: 376px; /* Expanded structural boundaries to reduce blank margins */
+      height: 94dvh; /* Increased container size vertically for maximum safe visual expansion */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       z-index: 10;
+      overflow: visible; /* Clear frame bounds layout to completely avoid content scrolling */
     }
 
     /* Staggered Content Architecture Entry Trigger */
@@ -208,11 +209,11 @@
       align-items: center;
       gap: 12px; /* Tightened gap profile to fit density matrix seamlessly */
       z-index: 1;
-      overflow: visible; 
+      overflow: visible; /* Set to visible so negative outer absolute boundaries don't clip */
       border: 2px solid transparent; 
     }
 
-    /* Dynamic Border Engine */
+    /* Dynamic Border Engine - Softened and slowed down to 8s */
     .converter-card::before {
       content: "";
       position: absolute;
@@ -224,7 +225,7 @@
       background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
       background-size: 300% 100%;
       z-index: -2;
-      animation: cardBorderShimmer 4s linear infinite;
+      animation: cardBorderShimmer 8s linear infinite;
     }
 
     /* Inner layer blocks the gradient from spilling inside */
@@ -510,8 +511,7 @@
     /* Teal Themed Dynamic Yield List Display */
     .scaler-list-display {
       width: 100%;
-      max-height: 140px;
-      overflow-y: auto;
+      overflow: visible; /* Clear inner box scroll lines */
       background: #00A79D;
       border-radius: 12px;
       border: 1px solid rgba(0, 167, 157, 0.25);
@@ -526,14 +526,6 @@
       font-size: 0.8rem;
       color: #ffffff;
       line-height: 1.5;
-    }
-
-    .scaler-list-display ul::-webkit-scrollbar {
-      width: 4px;
-    }
-    .scaler-list-display ul::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.4);
-      border-radius: 4px;
     }
 
     /* Rounded Back Button Utility */
@@ -592,14 +584,15 @@
        ========================================== */
     .recipe-screen-wrapper {
       position: relative; 
-      width: 100%;
-      max-width: 380px;
+      width: calc(100% - 4px);
+      max-width: 376px;
       height: 94dvh; /* Increased container size vertically for cleaner, longer mobile tracking */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between; 
       z-index: 10;
+      overflow: visible; /* Clear outer frame scrollbars entirely */
     }
 
     .recipe-card {
@@ -614,16 +607,34 @@
       flex-direction: column;
       align-items: center;
       z-index: 1;
-      overflow-y: auto; /* Enabled full master scrolling directly inside the parent container card layout */
-      border: 1px solid #AA771C; /* Made the structural container borders thinner */
+      overflow: visible; /* Container scroll completely removed so shimmers render safely */
+      border: 2px solid transparent; /* Structural card frame mapping */
     }
 
+    /* Gold Border Shimmer Engine for Recipe Page Container */
     .recipe-card::before {
-      display: none;
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
+      z-index: -2;
+      animation: cardBorderShimmer 8s linear infinite; /* Matched the soft and slow shimmer speed */
     }
 
+    /* Absolute White Canvas overlay blocks the core background gradient leak */
     .recipe-card::after {
-      display: none;
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: #ffffff;
+      z-index: -1;
+      pointer-events: none;
     }
 
     .category-bar {
@@ -674,17 +685,6 @@
       flex-direction: column;
       gap: 12px;
       flex-shrink: 0; /* Allows standard overflow mapping up into the parent card frame safely */
-    }
-
-    .recipe-card::-webkit-scrollbar {
-      width: 4px;
-    }
-    .recipe-card::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .recipe-card::-webkit-scrollbar-thumb {
-      background: rgba(170, 119, 25, 0.25);
-      border-radius: 10px;
     }
 
     .recipe-row-card {
@@ -822,22 +822,44 @@
     /* ==========================================
        ADDED STATE: MULTI-TIMER PANEL UI
        ========================================== */
+    #timerScreen {
+      overflow: visible; /* Block active timer structural panel overflow leaks */
+    }
+
+    /* Gold Border Shimmer Engine for Timer Page Container */
+    #timerScreen .recipe-card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
+      z-index: -2;
+      animation: cardBorderShimmer 8s linear infinite; /* Softened and slowed down */
+    }
+
+    /* White container base canvas mapping rules */
+    #timerScreen .recipe-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: #ffffff;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     .timer-dashboard {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
       flex: 1;
-      overflow-y: auto;
+      overflow: visible;
       padding-right: 4px;
-    }
-
-    .timer-dashboard::-webkit-scrollbar {
-      width: 4px;
-    }
-    .timer-dashboard::-webkit-scrollbar-thumb {
-      background: rgba(170, 119, 25, 0.25);
-      border-radius: 10px;
     }
 
     /* Premium Stopwatch Visual Module (Shifted downwards via spacing architecture) */
@@ -1628,9 +1650,8 @@
     function toggleAccordion(headerElement) {
       const cardWrapper = headerElement.parentElement;
       const drawer = cardWrapper.querySelector('.recipe-body-drawer');
-      const container = document.getElementById('recipeContainerNode');
       
-      container.querySelectorAll('.recipe-row-card').forEach(item => {
+      document.getElementById('recipeContainerNode').querySelectorAll('.recipe-row-card').forEach(item => {
         if (item !== cardWrapper && item.classList.contains('expanded')) {
           item.classList.remove('expanded');
           item.querySelector('.recipe-body-drawer').style.maxHeight = "0px";
@@ -1641,16 +1662,6 @@
 
       if (cardWrapper.classList.contains('expanded')) {
         drawer.style.maxHeight = drawer.scrollHeight + "px";
-        
-        // Auto-scroll parent layout frame down to reveal expanding rows safely
-        setTimeout(() => {
-          const cardParent = document.querySelector('.recipe-card');
-          const distanceToTop = cardWrapper.offsetTop - 70;
-          cardParent.scrollTo({
-            top: distanceToTop,
-            behavior: 'smooth'
-          });
-        }, 310);
       } else {
         drawer.style.maxHeight = "0px";
       }
