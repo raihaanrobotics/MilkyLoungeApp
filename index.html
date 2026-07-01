@@ -27,52 +27,26 @@
       flex-direction: column;
       justify-content: center; /* Centered layout contents vertically for landing state stabilization */
       align-items: center;    
+      background: linear-gradient(90deg, rgba(92, 64, 21, 0.25) 0px, rgba(92, 64, 21, 0.25) 2px, transparent 2px),
+                  linear-gradient(to bottom, #d6c5aa 0%, #bda98c 100%);
+      background-size: 40px 100%, 100% 100%;
       overflow: hidden;
       padding: 16px 14px; /* Uniform safe buffer from all screen edges including shimmer bounds */
       color-scheme: light;
-      
-      /* UNIFORM WARM CREAM PANEL ENGINE (NO BACKGROUND COLOR GRADIENTS, PRESERVED PANEL MATRIX) */
-      background: 
-        /* Repeating slim vertical panel lines - structural contrast heightened */
-        linear-gradient(90deg, rgba(170, 119, 28, 0.15) 0px, rgba(170, 119, 28, 0.15) 1.5px, transparent 1.5px, transparent 32px),
-        /* Solid premium warm cream uniform profile color base */
-        #f5efe6;
-      background-size: 32px 100%, 100% 100%;
-    }
-
-    /* Keep class for structural JS script integrity, but lock baseline properties uniform */
-    body.interior-active {
-      background: 
-        linear-gradient(90deg, rgba(170, 119, 28, 0.15) 0px, rgba(170, 119, 28, 0.15) 1.5px, transparent 1.5px, transparent 32px),
-        #f5efe6;
-      background-size: 32px 100%, 100% 100%;
     }
 
     /* 2. THE MOBILE GRID MATRIX */
     .mobile-menu-wrapper {
-      position: relative;
-      width: calc(100% - 4px);
-      max-width: 376px; /* Expanded structural boundaries to match standard card wrappers exactly */
+      width: 100%;
+      max-width: 376px; /* Expanded slightly to occupy more horizontal space safely */
       height: 94dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 10;
-      overflow: hidden;
-      border-radius: 30px;
-      box-shadow: 0 12px 35px rgba(170, 119, 28, 0.08);
-      padding: 24px 20px;
       transition: opacity 0.4s ease, transform 0.4s ease;
-
-      /* PREMIUM GOLD SHIMMERING BORDER CONFIGURATION */
-      border: 3px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(#ffffff, #ffffff), 
-                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
-      background-size: 100%, 300% 100%;
-      animation: cardBorderShimmer 8s linear infinite;
+      z-index: 10;
+      overflow: visible;
     }
 
     /* 3. ENHANCED LOGO PROFILE */
@@ -80,13 +54,13 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-bottom: 25px; /* Compacted layout to avoid edge overflow points inside frame container */
+      margin-bottom: 25px; 
       position: relative;
       z-index: 2; 
     }
 
     .logo-img {
-      width: 260px; /* Scaled seamlessly down to balance cluster metrics inside container borders perfectly */
+      width: 280px; /* Refined slightly for a tighter, more centered desktop/mobile cluster profile */
       height: auto;
       filter: drop-shadow(0 8px 20px rgba(170, 119, 28, 0.08));
     }
@@ -96,7 +70,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 14px; 
+      gap: 16px; 
       position: relative;
       z-index: 3;
     }
@@ -105,13 +79,13 @@
     .shimmer-glass-btn {
       position: relative;
       width: 100%;
-      padding: 16px 20px; /* Tweaked slightly to secure uniform safe container density heights */
-      font-size: 0.84rem;
+      padding: 18px 20px;
+      font-size: 0.88rem;
       font-weight: 600;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       
-      background: rgba(255, 255, 255, 0.65); /* Heightened base opacity readability inside the cards */
+      background: rgba(255, 255, 255, 0.45);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: #7A5312; 
@@ -129,7 +103,7 @@
       border: 2px solid transparent;
       background-clip: padding-box, border-box;
       background-origin: padding-box, border-box;
-      background-image: linear-gradient(to right, rgba(255,255,255,0.65), rgba(255,255,255,0.65)), 
+      background-image: linear-gradient(to right, rgba(255,255,255,0.45), rgba(255,255,255,0.45)), 
                         linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
       background-size: 100%, 300% 100%;
       
@@ -190,7 +164,7 @@
       align-items: center;
       justify-content: space-between;
       z-index: 10;
-      overflow: hidden; /* Fixed screen wrappers strictly to avoid any container expansion */
+      overflow: visible; /* Clear frame bounds layout to completely avoid content scrolling */
     }
 
     /* Staggered Content Architecture Entry Trigger */
@@ -227,7 +201,6 @@
     .converter-card {
       position: relative;
       width: 100%;
-      height: 100%; /* Explicitly locked height profile */
       flex: 1;
       background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(16px);
@@ -240,15 +213,22 @@
       align-items: center;
       gap: 12px; /* Tightened gap profile to fit density matrix seamlessly */
       z-index: 1;
-      overflow: hidden; /* Prevents card from expanding visually */
-      
-      /* Updated Shimmering Border */
-      border: 3px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
-                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
-      background-size: 100%, 300% 100%;
+      overflow: visible; /* Set to visible so negative outer absolute boundaries don't clip */
+      border: 2px solid transparent; 
+    }
+
+    /* Dynamic Border Engine - Softened and slowed down to 8s */
+    .converter-card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
+      z-index: -2;
       animation: cardBorderShimmer 8s linear infinite;
     }
 
@@ -258,21 +238,22 @@
       position: absolute;
       inset: 0;
       border-radius: 28px;
-      /* removed background to allow parent background-clip */
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       z-index: -1;
       pointer-events: none;
     }
 
     /* PURE WHITE HEADER PROFILE BACKGROUND ENGINE FOR SCALER AND CONVERTER */
-    #scalerScreen .converter-card,
-    #converterScreen .converter-card {
-      background-image: linear-gradient(to bottom, #ffffff 52px, rgba(255, 255, 255, 0.5) 52px), 
-                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+    #scalerScreen .converter-card::after,
+    #converterScreen .converter-card::after {
+      background: linear-gradient(to bottom, #ffffff 0px, #ffffff 52px, rgba(255, 255, 255, 0.5) 52px, rgba(255, 255, 255, 0.5) 100%);
     }
 
     @keyframes cardBorderShimmer {
-      0% { background-position: 0% 0%, 0% 0%; }
-      100% { background-position: 0% 0%, 300% 0%; }
+      0% { background-position: 0% 0%; }
+      100% { background-position: 300% 0%; }
     }
 
     .converter-title {
@@ -534,7 +515,7 @@
     /* Teal Themed Dynamic Yield List Display */
     .scaler-list-display {
       width: 100%;
-      overflow-y: auto; /* Internal scrolling allows content navigation without expanding card */
+      overflow: visible; /* Clear inner box scroll lines */
       background: #00A79D;
       border-radius: 12px;
       border: 1px solid rgba(0, 167, 157, 0.25);
@@ -615,13 +596,12 @@
       align-items: center;
       justify-content: space-between; 
       z-index: 10;
-      overflow: hidden; /* Prevent visual tracking screen expand maps */
+      overflow: visible; /* Clear outer frame scrollbars entirely */
     }
 
     .recipe-card {
       position: relative;
       width: 100%;
-      height: 100%; /* Explicit locked aspect ratios */
       flex: 1; 
       background: #ffffff;
       border-radius: 30px;
@@ -631,16 +611,34 @@
       flex-direction: column;
       align-items: center;
       z-index: 1;
-      overflow: hidden; /* Container fixed internally */
-      
-      /* Updated Shimmering Border */
-      border: 3px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(#ffffff, #ffffff), 
-                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
-      background-size: 100%, 300% 100%;
-      animation: cardBorderShimmer 8s linear infinite;
+      overflow: visible; /* Container scroll completely removed so shimmers render safely */
+      border: 2px solid transparent; /* Structural card frame mapping */
+    }
+
+    /* Gold Border Shimmer Engine for Recipe Page Container */
+    .recipe-card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
+      z-index: -2;
+      animation: cardBorderShimmer 8s linear infinite; /* Matched the soft and slow shimmer speed */
+    }
+
+    /* Absolute White Canvas overlay blocks the core background gradient leak */
+    .recipe-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: #ffffff;
+      z-index: -1;
+      pointer-events: none;
     }
 
     .category-bar {
@@ -690,8 +688,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      flex: 1;
-      overflow-y: auto; /* Dynamic internal viewport scrolling isolates container frames */
       flex-shrink: 0; /* Allows standard overflow mapping up into the parent card frame safely */
     }
 
@@ -831,19 +827,33 @@
        ADDED STATE: MULTI-TIMER PANEL UI
        ========================================== */
     #timerScreen {
-      overflow: hidden; /* Block active timer structural panel overflow leaks completely */
+      overflow: visible; /* Block active timer structural panel overflow leaks */
     }
 
     /* Gold Border Shimmer Engine for Timer Page Container */
-    #timerScreen .recipe-card {
-      /* Updated Shimmering Border */
-      border: 3px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(#ffffff, #ffffff), 
-                        linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
-      background-size: 100%, 300% 100%;
-      animation: cardBorderShimmer 8s linear infinite;
+    #timerScreen .recipe-card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
+      z-index: -2;
+      animation: cardBorderShimmer 8s linear infinite; /* Softened and slowed down */
+    }
+
+    /* White container base canvas mapping rules */
+    #timerScreen .recipe-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: #ffffff;
+      z-index: -1;
+      pointer-events: none;
     }
 
     .timer-dashboard {
@@ -852,7 +862,7 @@
       flex-direction: column;
       gap: 12px;
       flex: 1;
-      overflow-y: auto; /* Internal scrolling secures zero dynamic window expansion */
+      overflow: visible;
       padding-right: 4px;
     }
 
@@ -1167,23 +1177,25 @@
 
   <div class="mobile-menu-wrapper" id="landingScreen">
     
-    <div class="logo-wrap">
-      <img src="1744919423220.png" alt="The Milky Lounge Logo" class="logo-img">
-    </div>
+    <div class="recipe-card" style="padding: 30px 20px; justify-content: center;">
+      <div class="logo-wrap">
+        <img src="1744919423220.png" alt="The Milky Lounge Logo" class="logo-img">
+      </div>
 
-    <div class="button-stack">
-      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'recipeAlert')">
-        3-Ingredient Recipes
-      </button>
-      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openScaler')">
-        Recipe Scaler / Multiplier
-      </button>
-      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openConverter')">
-        Kitchen Conversion Tool
-      </button>
-      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openTimer')">
-        Multi-Timer Panel
-      </button>
+      <div class="button-stack">
+        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'recipeAlert')">
+          3-Ingredient Recipes
+        </button>
+        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openScaler')">
+          Recipe Scaler / Multiplier
+        </button>
+        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openConverter')">
+          Kitchen Conversion Tool
+        </button>
+        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openTimer')">
+          Multi-Timer Panel
+        </button>
+      </div>
     </div>
 
   </div>
@@ -1222,7 +1234,7 @@
         </div>
       </div>
 
-      <div class="converter-section" style="border-bottom: none; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+      <div class="converter-section" style="border-bottom: none; flex: 1; display: flex; flex-direction: column;">
         <h3 class="section-title-label">Ingredients Specification</h3>
         
         <div class="input-row" style="margin-bottom: 4px;">
@@ -1534,7 +1546,6 @@
       document.querySelectorAll('.hamburger-icon').forEach(i => i.classList.remove('open'));
       
       if (isOpeningConverter) {
-        document.body.classList.add('interior-active');
         const activeTarget = document.getElementById(screenId);
         activeTarget.classList.remove('hidden');
         activeTarget.classList.add('animate-build');
@@ -1549,7 +1560,6 @@
           initMasterClockEngine();
         }
       } else {
-        document.body.classList.remove('interior-active');
         document.getElementById('customSelectWrapper').classList.remove('open');
         document.getElementById('selectRowWrapper').classList.remove('dropdown-active');
         document.getElementById('customDensityWrapper').classList.remove('open');
