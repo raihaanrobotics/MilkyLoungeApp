@@ -27,26 +27,70 @@
       flex-direction: column;
       justify-content: center; /* Centered layout contents vertically for landing state stabilization */
       align-items: center;    
-      background: linear-gradient(90deg, rgba(92, 64, 21, 0.15) 0px, rgba(92, 64, 21, 0.15) 2px, transparent 2px),
-                  linear-gradient(to bottom, #faf6ee 0%, #eddcc4 100%);
-      background-size: 40px 100%, 100% 100%;
       overflow: hidden;
       padding: 16px 14px; /* Uniform safe buffer from all screen edges including shimmer bounds */
       color-scheme: light;
+      
+      /* UNIFORM LIGHT TEAL PANEL ENGINE (NO BACKGROUND COLOR GRADIENTS, PRESERVED PANEL MATRIX) */
+      background: 
+        /* Repeating slim vertical panel lines - structural contrast heightened */
+        linear-gradient(90deg, rgba(0, 167, 157, 0.28) 0px, rgba(0, 167, 157, 0.28) 1.5px, transparent 1.5px, transparent 32px),
+        /* Solid premium light teal uniform profile color base */
+        #b2e3e0;
+      background-size: 32px 100%, 100% 100%;
+    }
+
+    /* Keep class for structural JS script integrity, but lock baseline properties uniform */
+    body.interior-active {
+      background: 
+        linear-gradient(90deg, rgba(0, 167, 157, 0.28) 0px, rgba(0, 167, 157, 0.28) 1.5px, transparent 1.5px, transparent 32px),
+        #b2e3e0;
+      background-size: 32px 100%, 100% 100%;
     }
 
     /* 2. THE MOBILE GRID MATRIX */
     .mobile-menu-wrapper {
-      width: 100%;
-      max-width: 376px; /* Expanded slightly to occupy more horizontal space safely */
+      position: relative;
+      width: calc(100% - 4px);
+      max-width: 376px; /* Expanded structural boundaries to match standard card wrappers exactly */
       height: 94dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.4s ease, transform 0.4s ease;
       z-index: 10;
       overflow: visible;
+      background: #ffffff; /* Uniform pure white container asset base */
+      border-radius: 30px;
+      box-shadow: 0 12px 35px rgba(170, 119, 28, 0.08);
+      padding: 24px 20px;
+      border: 2px solid transparent;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Gold Border Shimmer Engine for Home Page Container Wrapper */
+    .mobile-menu-wrapper::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
+      background-size: 300% 100%;
+      z-index: -2;
+      animation: cardBorderShimmer 8s linear infinite;
+    }
+
+    .mobile-menu-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: #ffffff; /* Clean pure white interior overlay mask background */
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* 3. ENHANCED LOGO PROFILE */
@@ -54,13 +98,13 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-bottom: 25px; 
+      margin-bottom: 25px; /* Compacted layout to avoid edge overflow points inside frame container */
       position: relative;
       z-index: 2; 
     }
 
     .logo-img {
-      width: 280px; /* Refined slightly for a tighter, more centered desktop/mobile cluster profile */
+      width: 260px; /* Scaled seamlessly down to balance cluster metrics inside container borders perfectly */
       height: auto;
       filter: drop-shadow(0 8px 20px rgba(170, 119, 28, 0.08));
     }
@@ -70,7 +114,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 16px; 
+      gap: 14px; 
       position: relative;
       z-index: 3;
     }
@@ -79,13 +123,13 @@
     .shimmer-glass-btn {
       position: relative;
       width: 100%;
-      padding: 18px 20px;
-      font-size: 0.88rem;
+      padding: 16px 20px; /* Tweaked slightly to secure uniform safe container density heights */
+      font-size: 0.84rem;
       font-weight: 600;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.65); /* Heightened base opacity readability inside the cards */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: #7A5312; 
@@ -103,7 +147,7 @@
       border: 2px solid transparent;
       background-clip: padding-box, border-box;
       background-origin: padding-box, border-box;
-      background-image: linear-gradient(to right, rgba(255,255,255,0.45), rgba(255,255,255,0.45)), 
+      background-image: linear-gradient(to right, rgba(255,255,255,0.65), rgba(255,255,255,0.65)), 
                         linear-gradient(90deg, #AA771C, #FFF3B0, #D4AF37, #FFF3B0, #AA771C);
       background-size: 100%, 300% 100%;
       
@@ -603,7 +647,6 @@
       position: relative;
       width: 100%;
       flex: 1; 
-      min-height: 0; /* Stabilizes composition and maps vertical thresholds safely */
       background: #ffffff;
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.12);
@@ -689,20 +732,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    /* Minimal clean scrollbar architecture for inner navigation */
-    .recipe-items-container::-webkit-scrollbar {
-      width: 4px;
-    }
-    .recipe-items-container::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .recipe-items-container::-webkit-scrollbar-thumb {
-      background: rgba(170, 119, 28, 0.15);
-      border-radius: 10px;
+      flex-shrink: 0; /* Allows standard overflow mapping up into the parent card frame safely */
     }
 
     .recipe-row-card {
@@ -1191,25 +1221,23 @@
 
   <div class="mobile-menu-wrapper" id="landingScreen">
     
-    <div class="recipe-card" style="padding: 30px 20px; justify-content: center;">
-      <div class="logo-wrap">
-        <img src="1744919423220.png" alt="The Milky Lounge Logo" class="logo-img">
-      </div>
+    <div class="logo-wrap">
+      <img src="1744919423220.png" alt="The Milky Lounge Logo" class="logo-img">
+    </div>
 
-      <div class="button-stack">
-        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'recipeAlert')">
-          3-Ingredient Recipes
-        </button>
-        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openScaler')">
-          Recipe Scaler / Multiplier
-        </button>
-        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openConverter')">
-          Kitchen Conversion Tool
-        </button>
-        <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openTimer')">
-          Multi-Timer Panel
-        </button>
-      </div>
+    <div class="button-stack">
+      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'recipeAlert')">
+        3-Ingredient Recipes
+      </button>
+      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openScaler')">
+        Recipe Scaler / Multiplier
+      </button>
+      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openConverter')">
+        Kitchen Conversion Tool
+      </button>
+      <button class="shimmer-glass-btn" onclick="handleMenuClick(event, 'openTimer')">
+        Multi-Timer Panel
+      </button>
     </div>
 
   </div>
@@ -1560,6 +1588,7 @@
       document.querySelectorAll('.hamburger-icon').forEach(i => i.classList.remove('open'));
       
       if (isOpeningConverter) {
+        document.body.classList.add('interior-active');
         const activeTarget = document.getElementById(screenId);
         activeTarget.classList.remove('hidden');
         activeTarget.classList.add('animate-build');
@@ -1574,6 +1603,7 @@
           initMasterClockEngine();
         }
       } else {
+        document.body.classList.remove('interior-active');
         document.getElementById('customSelectWrapper').classList.remove('open');
         document.getElementById('selectRowWrapper').classList.remove('dropdown-active');
         document.getElementById('customDensityWrapper').classList.remove('open');
