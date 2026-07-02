@@ -737,6 +737,11 @@
       overflow-x: hidden;
       scrollbar-width: none;  /* Hides scrollbar track on Firefox */
       min-height: 0;
+      
+      /* TOUCH SCROLL ACTIVATION EXTENSIONS */
+      pointer-events: auto !important; /* Overrides global touch click blocks */
+      touch-action: pan-y !important;  /* Dictates explicit vertical axis touch recognition */
+      -webkit-overflow-scrolling: touch !important; /* Enables smooth inertial momentum scrolling on iOS */
     }
 
     /* Clear scrollbar visibility for WebKit browsers to match design aesthetic */
