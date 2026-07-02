@@ -646,7 +646,7 @@
     .recipe-card {
       position: relative;
       width: 100%;
-      flex: 1; 
+      height: 100%;
       background: #ffffff;
       border-radius: 30px;
       box-shadow: 0 12px 35px rgba(170, 119, 28, 0.12);
@@ -734,7 +734,9 @@
       gap: 12px;
       flex: 1;                /* Occupies remaining vertical space in the card */
       overflow-y: auto;       /* Enables smooth native vertical scrolling */
+      overflow-x: hidden;
       scrollbar-width: none;  /* Hides scrollbar track on Firefox */
+      min-height: 0;
     }
 
     /* Clear scrollbar visibility for WebKit browsers to match design aesthetic */
