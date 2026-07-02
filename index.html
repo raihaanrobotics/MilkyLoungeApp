@@ -655,7 +655,7 @@
       flex-direction: column;
       align-items: center;
       z-index: 1;
-      overflow: visible; /* Container scroll completely removed so shimmers render safely */
+      overflow: visible; /* Container fixed and cannot expand */
       border: 2px solid transparent; /* Structural card frame mapping */
     }
 
@@ -732,7 +732,18 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      flex-shrink: 0; /* Allows standard overflow mapping up into the parent card frame safely */
+      flex: 1;                /* Occupies remaining vertical space in the card */
+      overflow-y: auto;       /* Enables smooth native vertical scrolling */
+      scrollbar-width: none;  /* Hides scrollbar track on Firefox */
+    }
+
+    /* Clear scrollbar visibility for WebKit browsers to match design aesthetic */
+    .recipe-items-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    #recipeScreen .recipe-card {
+      overflow: visible;                /* Prevents the outer card structure from bleeding or expanding */
     }
 
     .recipe-row-card {
@@ -903,11 +914,34 @@
     .timer-dashboard {
       width: 100%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;       /* Changes stacking configuration to horizontal lines */
       gap: 12px;
-      flex: 1;
-      overflow: visible;
-      padding-right: 4px;
+      flex-shrink: 0;
+      overflow-x: auto;          /* Enables continuous horizontal sweeping scrolls */
+      scroll-snap-type: x mandatory; /* Smooth snaps each individual module card node */
+      padding: 4px 2px 12px 2px;
+      scrollbar-width: none;
+    }
+
+    .timer-dashboard::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Active Timer Node Pill - Static State Base Line */
+    .active-timer-node {
+      width: 85%;                /* Preserves structural look with preview margins */
+      min-width: 260px;          /* Stabilizes density cross-platform widths */
+      flex-shrink: 0;            /* Forces cards next to each other on a single layer */
+      scroll-snap-align: start;  /* Aligns edge bounds cleanly upon snap lock rules */
+      background: #fdfbf7;
+      border: 1px solid rgba(170, 119, 28, 0.25);
+      border-radius: 20px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(170, 119, 28, 0.04);
+      transition: all 0.3s ease;
     }
 
     /* Premium Stopwatch Visual Module (Shifted downwards via spacing architecture) */
@@ -1005,7 +1039,9 @@
 
     /* Active Timer Node Pill - Static State Base Line */
     .active-timer-node {
-      width: 100%;
+      flex: 0 0 85%;                  /* Fixed width to display current item while peeking next item */
+      scroll-snap-align: start;       /* Anchors card into frame upon swipe release */
+      box-sizing: border-box;
       background: #fdfbf7;
       border: 1px solid rgba(170, 119, 28, 0.25);
       border-radius: 20px;
@@ -1215,6 +1251,14 @@
       animation: borderShimmer 4s linear infinite;
       box-shadow: 0 4px 15px rgba(170, 119, 28, 0.12);
     }
+
+        /* PREMIUM BORDER ENGINE RESTORATION OVERRIDE */
+    .mobile-menu-wrapper, 
+    .converter-card, 
+    .recipe-card {
+      background: transparent !important;
+    }
+
   </style>
 </head>
 <body>
@@ -1852,7 +1896,7 @@
       container.innerHTML = "";
 
       if (localTimersEngine.length === 0) {
-        container.innerHTML = `<div style="text-align:center; font-size:0.75rem; color:#AA771C; margin-top:20px;">No timers currently operational.</div>`;
+        container.innerHTML = `<div style="text-align:center; font-size:0.75rem; color:#AA771C; margin-top:20px; width: 100%; flex-shrink: 0;">No timers currently operational.</div>`;
         return;
       }
 
